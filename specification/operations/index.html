@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Operations - Single Use Voucher Service Interface</title>
+    <meta name="generator" content="Hugo 0.29" />
+
+    
+    <link rel="canonical" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/">
+    
+
+    <meta property="og:url" content="https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/">
+    <meta property="og:title" content="Single Use Voucher Service Interface">
+    <meta property="og:image" content="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-square.png">
+    <meta name="apple-mobile-web-app-title" content="Single Use Voucher Service Interface">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://electrumpayments.github.io/suv-service-interface-docs/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://electrumpayments.github.io/suv-service-interface-docs/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.eot');
+        src: url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.woff')
+               format('woff'),
+             url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.ttf')
+               format('truetype'),
+             url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/application.css">
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://electrumpayments.github.io/suv-service-interface-docs/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-cyan palette-accent-orange">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Operations
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/electrumpayments" title="@electrumpayments on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/electrumpayments/suv-service-interface" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-square.png">
+        </div>
+      
+      <div class="name">
+        <strong>Single Use Voucher Service Interface </strong>
+        
+          <br>
+          electrumpayments/suv-service-interface
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/electrumpayments/suv-service-interface/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/electrumpayments/suv-service-interface/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting Started" href="https://electrumpayments.github.io/suv-service-interface-docs/getting-started/">
+	
+	Getting Started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Overview" href="https://electrumpayments.github.io/suv-service-interface-docs/overview/">
+	
+	Overview
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Protocol Basics" href="https://electrumpayments.github.io/suv-service-interface-docs/protocolbasics/">
+	
+	Protocol Basics
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Message Flows" href="https://electrumpayments.github.io/suv-service-interface-docs/messageflows/">
+	
+	Message Flows
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Advanced Topics" href="https://electrumpayments.github.io/suv-service-interface-docs/advanced-topic/">
+	
+	Advanced Topics
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Specification</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Introduction" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/">
+	
+	Introduction
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Operations" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/">
+	
+	Operations
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Definitions" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/">
+	
+	Definitions
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Swagger" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/">
+	
+	Swagger
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Release Notes" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/">
+	
+	Release Notes
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Operations </h1>
+
+			
+
+<h2 id="redeemvoucher">redeemVoucher</h2>
+
+<p>Redeems a voucher.</p>
+
+<p><strong>POST /suv/v1/redemptions</strong></p>
+
+<p>This operation is performed when a voucher is used as a form of tender. When used as a form of tender the consumer redeems the requestAmount against the voucher. The voucher vendor is responsible for authorizing the redemption. Once redeemed, the voucher  may not be used as a form of tender again.</p>
+
+<h4 id="security">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A redemption request.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#redemptionrequest">RedemptionRequest</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#redemptionresponse">RedemptionResponse</a></td>
+</tr>
+
+<tr>
+<td>201</td>
+<td>Created</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#redemptionresponse">RedemptionResponse</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="confirmredeem">confirmRedeem</h2>
+
+<p>Confirm a voucher redemption request that completed successfully.</p>
+
+<p><strong>POST /suv/v1/redemptions/confirmations</strong></p>
+
+<p>Once a redemptionRequest has completed successfully there is typically no need to notify the voucher vendor of the successful completion of the sale. However, this API recognises that client implementations may be very familiar with dual message APIs and this confirmation operation is provided to achieve consistency across the API with respect to single vs dual message operations. By performing this operation the client indicates that no subsequent reversal of the redemption will be performed. Note though that the successful completion of the confirmRedemption operation does not guarantee that the voucher will not be refunded in future.</p>
+
+<h4 id="security-1">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-1">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A voucher redemption confirmation.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicadvice">BasicAdvice</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-1">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicadvice">BasicAdvice</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicadvice">BasicAdvice</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="reverseredeem">reverseRedeem</h2>
+
+<p>Reverse a voucher redemption request.</p>
+
+<p><strong>POST /suv/v1/redemptions/reversals</strong></p>
+
+<p>If a voucherRedemption request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor does not consider the voucher to be in redeemed state. reverseRedemption must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseRedemption may be called repeatedly on the same voucher resource without negative effect. If a voucher redemption is reversed there is no need to perform a refund against the voucher.</p>
+
+<h4 id="security-2">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-2">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A voucher redemption reversal.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-2">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="refundvoucher">refundVoucher</h2>
+
+<p>Refunds a voucher.</p>
+
+<p><strong>POST /suv/v1/refunds</strong></p>
+
+<p>This operation is performed when a voucher was previously used as a form of tender. Should a consumer request a refund from the merchant, the merchant may use the refundVoucher operation to request the voucher be placed back into an unredeemed state. The voucher vendor is responsible for authorizing the refund. Once refunded, the voucher may be used as a form of tender again if allowed by the voucher vendor.</p>
+
+<h4 id="security-3">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-3">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A refund request.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#refundrequest">RefundRequest</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-3">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#refundresponse">RefundResponse</a></td>
+</tr>
+
+<tr>
+<td>201</td>
+<td>Created</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#refundresponse">RefundResponse</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="confirmrefund">confirmRefund</h2>
+
+<p>Confirm a voucher refund request that completed successfully.</p>
+
+<p><strong>POST /suv/v1/refunds/confirmations</strong></p>
+
+<p>Once a refundRequest has completed successfully there is typically no need to notify the voucher vendor of the successful completion of the refund. However, this API recognises that client implementations may be very familiar with dual message APIs and this confirmation operation is provided to achieve consistency across the API with respect to single vs dual message operations. However, by performing this operation the client indicates that no subsequent reversal of the refund will be performed.</p>
+
+<h4 id="security-4">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-4">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A voucher refund confirmation.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicadvice">BasicAdvice</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-4">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicadvice">BasicAdvice</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicadvice">BasicAdvice</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="reverserefund">reverseRefund</h2>
+
+<p>Reverse a voucher refund request.</p>
+
+<p><strong>POST /suv/v1/refunds/reversals</strong></p>
+
+<p>If a voucherRefund request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor does not consider the voucher to be in a refunded state. reverseRefund must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseRefund may be called repeatedly on the same voucher resource without negative effect.</p>
+
+<h4 id="security-5">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-5">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A voucher refund reversal.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-5">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="provisionvoucher">provisionVoucher</h2>
+
+<p>Request a voucher be provisioned.</p>
+
+<p><strong>POST /suv/v1/vouchers</strong></p>
+
+<p>Requests a voucher from the voucher vendor.</p>
+
+<h4 id="security-6">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-6">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A provision request.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#provisionrequest">ProvisionRequest</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-6">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#provisionresponse">ProvisionResponse</a></td>
+</tr>
+
+<tr>
+<td>201</td>
+<td>Created</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#provisionresponse">ProvisionResponse</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="confirmvoucher">confirmVoucher</h2>
+
+<p>Confirm a voucher provision request that completed successfully.</p>
+
+<p><strong>POST /suv/v1/vouchers/confirmations</strong></p>
+
+<p>Once a consumer has paid for a voucher and received the voucher from the merchant the merchant must notify the vendor that the voucher may be redeemed at some point in the future as per the voucher vendor&#x27;s instructions. confirmVoucher must be repeated until a final HTTP status code is received (i.e. not HTTP 5xx). confirmVoucher may be called repeatedly on the same voucher resource without negative effect.</p>
+
+<h4 id="security-7">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-7">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A voucher provision confirmation.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#tenderadvice">TenderAdvice</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-7">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#tenderadvice">TenderAdvice</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#tenderadvice">TenderAdvice</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="reversevoucher">reverseVoucher</h2>
+
+<p>Reverse a voucher provision request that failed or timed out.</p>
+
+<p><strong>POST /suv/v1/vouchers/reversals</strong></p>
+
+<p>If a voucherProvision request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor knows to never expect further messages pertaining to the voucher. reverseVoucher must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseVoucher may be called repeatedly on the same voucher resource without negative effect.</p>
+
+<h4 id="security-8">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-8">Request</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>A voucher provision reversal.</td>
+    <td></td>
+    <td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a>
+</tr></p>
+
+<p></table></p>
+
+<h4 id="response-8">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#basicreversal">BasicReversal</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2018 Released under the Apache 2.0 license &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				<nav class="pagination" aria-label="Footer">
+  <div >
+    <img src="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-small-white.png" align="right"/>
+  </div>
+</nav>
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/electrumpayments.github.io\/suv-service-interface-docs\/';
+      var repo_id  = 'electrumpayments\/suv-service-interface';
+    
+    </script>
+
+    <script src="https://electrumpayments.github.io/suv-service-interface-docs/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

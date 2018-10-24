@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Specifications on Single Use Voucher Service Interface</title>
+    <link>https://electrumpayments.github.io/suv-service-interface-docs/specification/</link>
+    <description>Recent content in Specifications on Single Use Voucher Service Interface</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the Apache 2.0 license</copyright>
+    
+	<atom:link href="https://electrumpayments.github.io/suv-service-interface-docs/specification/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Definitions</title>
+      <link>https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/</guid>
+      <description>Amounts Amounts which make up the transaction. Absent amounts have zero value.  Name Type Required Default Restrictions Description   requestAmount LedgerAmount optional   The transaction amount requested by the customer to be authorised or approved. This is the total amount the customer wishes to pay for a service or virtual product.   approvedAmount LedgerAmount optional   The transaction amount which was approved by the upstream entity.</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
+      <description> Version 1.1.0
+The Electrum SUV Service describes an interface for single use voucher transactions.
+Email Electrum Support
+Licensed under Apache 2.0
+Security Definitions httpBasic   type basic   description All requests require HTTP basic authentication, where user name equals the value used in Client.Institution.id and password has been agreed with Electrum.   </description>
+    </item>
+    
+    <item>
+      <title>Operations</title>
+      <link>https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/</guid>
+      <description>redeemVoucher Redeems a voucher.
+POST /suv/v1/redemptions
+This operation is performed when a voucher is used as a form of tender. When used as a form of tender the consumer redeems the requestAmount against the voucher. The voucher vendor is responsible for authorizing the redemption. Once redeemed, the voucher may not be used as a form of tender again.
+Security  httpBasic  Request Content-Type: application/json
+Parameters  Name Located in Required Description Default Schema</description>
+    </item>
+    
+    <item>
+      <title>Release Notes</title>
+      <link>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
+      <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
+v1.1.0 Released 24 October 2018
+ Added VoucherTransaction interface and implemented it in all provision, redemption and refund models Update base service interface version from v3.8.1 to v3.16.0.  Added PosConditionCode and included it in PosInfo Added msisdn to Customer Added PaymentMethod subtype CardPayment Added PaymentMethod subtype An32TokenPayment Added dateOfBirth and status field to Customer model Added utility for HTTP authentication Added JAVA 8 Times Added VasMessage interface such that Transaction and BasicAdvice implement.</description>
+    </item>
+    
+    <item>
+      <title>Swagger</title>
+      <link>https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/</guid>
+      <description>The swagger (Open API) definition of the interface specification can be found here, as well as below.
+Many tools are available for processing swagger files, and using a code generation tool to create a boilerplate client or server can be an excellent starting point for development. We highly recommend looking at swagger-codegen for a generator in your preferred language when starting out.
+Swagger definition --- swagger: &amp;quot;2.0&amp;quot; info: description: &amp;quot;The Electrum SUV Service describes an interface for single use voucher\ \ transactions.</description>
+    </item>
+    
+  </channel>
+</rss>

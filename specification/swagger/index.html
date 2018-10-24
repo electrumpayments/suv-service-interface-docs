@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Swagger - Single Use Voucher Service Interface</title>
+    <meta name="generator" content="Hugo 0.29" />
+
+    
+    <link rel="canonical" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/">
+    
+
+    <meta property="og:url" content="https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/">
+    <meta property="og:title" content="Single Use Voucher Service Interface">
+    <meta property="og:image" content="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-square.png">
+    <meta name="apple-mobile-web-app-title" content="Single Use Voucher Service Interface">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://electrumpayments.github.io/suv-service-interface-docs/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://electrumpayments.github.io/suv-service-interface-docs/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.eot');
+        src: url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.woff')
+               format('woff'),
+             url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.ttf')
+               format('truetype'),
+             url('https://electrumpayments.github.io/suv-service-interface-docs/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/application.css">
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://electrumpayments.github.io/suv-service-interface-docs/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <script src="https://electrumpayments.github.io/suv-service-interface-docs/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-cyan palette-accent-orange">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Swagger
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/electrumpayments" title="@electrumpayments on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  <a href="https://github.com/electrumpayments/suv-service-interface" class="project">
+    <div class="banner">
+      
+        <div class="logo">
+          <img src="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-square.png">
+        </div>
+      
+      <div class="name">
+        <strong>Single Use Voucher Service Interface </strong>
+        
+          <br>
+          electrumpayments/suv-service-interface
+        
+      </div>
+    </div>
+  </a>
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            <a href="https://github.com/electrumpayments/suv-service-interface/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/electrumpayments/suv-service-interface/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting Started" href="https://electrumpayments.github.io/suv-service-interface-docs/getting-started/">
+	
+	Getting Started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Overview" href="https://electrumpayments.github.io/suv-service-interface-docs/overview/">
+	
+	Overview
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Protocol Basics" href="https://electrumpayments.github.io/suv-service-interface-docs/protocolbasics/">
+	
+	Protocol Basics
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Message Flows" href="https://electrumpayments.github.io/suv-service-interface-docs/messageflows/">
+	
+	Message Flows
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Advanced Topics" href="https://electrumpayments.github.io/suv-service-interface-docs/advanced-topic/">
+	
+	Advanced Topics
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    <span class="section">Specification</span>
+    <ul>
+      
+        
+        
+
+
+
+<a  title="Introduction" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/">
+	
+	Introduction
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Operations" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/">
+	
+	Operations
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Definitions" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/">
+	
+	Definitions
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Swagger" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/">
+	
+	Swagger
+</a>
+
+
+
+      
+        
+        
+
+
+
+<a  title="Release Notes" href="https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/">
+	
+	Release Notes
+</a>
+
+
+
+      
+    </ul>
+  
+</li>
+
+
+        </ul>
+        
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Swagger </h1>
+
+			
+
+<p>The <a href="http://swagger.io">swagger (Open API)</a> definition of the interface specification can be found <a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/swagger.yaml">here</a>, as well as below.</p>
+
+<p>Many tools are available for processing swagger files, and using a code generation tool to create a boilerplate client or server can be an excellent starting point for development. We highly recommend looking at <a href="https://github.com/swagger-api/swagger-codegen">swagger-codegen</a> for a generator in your preferred language when starting out.</p>
+
+<h3 id="swagger-definition">Swagger definition</h3>
+
+<pre><code class="language-yaml">---
+swagger: &quot;2.0&quot;
+info:
+  description: &quot;The Electrum SUV Service describes an interface for single use voucher\
+    \ transactions.&quot;
+  version: &quot;1.1.0&quot;
+  title: &quot;SUV Service Interface&quot;
+  contact:
+    name: &quot;Electrum Support&quot;
+    url: &quot;http://io.electrum&quot;
+    email: &quot;support@electrum.co.za&quot;
+  license:
+    name: &quot;Apache 2.0&quot;
+    url: &quot;http://www.apache.org/licenses/LICENSE-2.0.html&quot;
+host: &quot;sandbox.electrum.io&quot;
+basePath: &quot;/suv/v1&quot;
+schemes:
+- &quot;https&quot;
+paths:
+  /suv/v1/redemptions:
+    post:
+      summary: &quot;Redeems a voucher.&quot;
+      description: &quot;This operation is performed when a voucher is used as a form of\
+        \ tender. When used as a form of tender the consumer redeems the requestAmount\
+        \ against the voucher. The voucher vendor is responsible for authorizing the\
+        \ redemption. Once redeemed, the voucher  may not be used as a form of tender\
+        \ again.&quot;
+      operationId: &quot;redeemVoucher&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A redemption request.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/RedemptionRequest&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/RedemptionResponse&quot;
+        201:
+          description: &quot;Created&quot;
+          schema:
+            $ref: &quot;#/definitions/RedemptionResponse&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/redemptions/confirmations:
+    post:
+      summary: &quot;Confirm a voucher redemption request that completed successfully.&quot;
+      description: &quot;Once a redemptionRequest has completed successfully there is typically\
+        \ no need to notify the voucher vendor of the successful completion of the\
+        \ sale. However, this API recognises that client implementations may be very\
+        \ familiar with dual message APIs and this confirmation operation is provided\
+        \ to achieve consistency across the API with respect to single vs dual message\
+        \ operations. By performing this operation the client indicates that no subsequent\
+        \ reversal of the redemption will be performed. Note though that the successful\
+        \ completion of the confirmRedemption operation does not guarantee that the\
+        \ voucher will not be refunded in future.&quot;
+      operationId: &quot;confirmRedeem&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A voucher redemption confirmation.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/BasicAdvice&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicAdvice&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicAdvice&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/redemptions/reversals:
+    post:
+      summary: &quot;Reverse a voucher redemption request.&quot;
+      description: &quot;If a voucherRedemption request fails with one of the 5xx HTTP\
+        \ statuses code, or no response was received within the timeout period, it\
+        \ must be reversed to ensure the vendor does not consider the voucher to be\
+        \ in redeemed state. reverseRedemption must be repeated until a final HTTP\
+        \ status code is received (i.e. not 5xx). reverseRedemption may be called\
+        \ repeatedly on the same voucher resource without negative effect. If a voucher\
+        \ redemption is reversed there is no need to perform a refund against the\
+        \ voucher.&quot;
+      operationId: &quot;reverseRedeem&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A voucher redemption reversal.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/BasicReversal&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicReversal&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicReversal&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/refunds:
+    post:
+      summary: &quot;Refunds a voucher.&quot;
+      description: &quot;This operation is performed when a voucher was previously used\
+        \ as a form of tender. Should a consumer request a refund from the merchant,\
+        \ the merchant may use the refundVoucher operation to request the voucher\
+        \ be placed back into an unredeemed state. The voucher vendor is responsible\
+        \ for authorizing the refund. Once refunded, the voucher may be used as a\
+        \ form of tender again if allowed by the voucher vendor.&quot;
+      operationId: &quot;refundVoucher&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A refund request.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/RefundRequest&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/RefundResponse&quot;
+        201:
+          description: &quot;Created&quot;
+          schema:
+            $ref: &quot;#/definitions/RefundResponse&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/refunds/confirmations:
+    post:
+      summary: &quot;Confirm a voucher refund request that completed successfully.&quot;
+      description: &quot;Once a refundRequest has completed successfully there is typically\
+        \ no need to notify the voucher vendor of the successful completion of the\
+        \ refund. However, this API recognises that client implementations may be\
+        \ very familiar with dual message APIs and this confirmation operation is\
+        \ provided to achieve consistency across the API with respect to single vs\
+        \ dual message operations. However, by performing this operation the client\
+        \ indicates that no subsequent reversal of the refund will be performed.&quot;
+      operationId: &quot;confirmRefund&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A voucher refund confirmation.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/BasicAdvice&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicAdvice&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicAdvice&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/refunds/reversals:
+    post:
+      summary: &quot;Reverse a voucher refund request.&quot;
+      description: &quot;If a voucherRefund request fails with one of the 5xx HTTP statuses\
+        \ code, or no response was received within the timeout period, it must be\
+        \ reversed to ensure the vendor does not consider the voucher to be in a refunded\
+        \ state. reverseRefund must be repeated until a final HTTP status code is\
+        \ received (i.e. not 5xx). reverseRefund may be called repeatedly on the same\
+        \ voucher resource without negative effect.&quot;
+      operationId: &quot;reverseRefund&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A voucher refund reversal.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/BasicReversal&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicReversal&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicReversal&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/vouchers:
+    post:
+      summary: &quot;Request a voucher be provisioned.&quot;
+      description: &quot;Requests a voucher from the voucher vendor.&quot;
+      operationId: &quot;provisionVoucher&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A provision request.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/ProvisionRequest&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/ProvisionResponse&quot;
+        201:
+          description: &quot;Created&quot;
+          schema:
+            $ref: &quot;#/definitions/ProvisionResponse&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/vouchers/confirmations:
+    post:
+      summary: &quot;Confirm a voucher provision request that completed successfully.&quot;
+      description: &quot;Once a consumer has paid for a voucher and received the voucher\
+        \ from the merchant the merchant must notify the vendor that the voucher may\
+        \ be redeemed at some point in the future as per the voucher vendor's instructions.\
+        \ confirmVoucher must be repeated until a final HTTP status code is received\
+        \ (i.e. not HTTP 5xx). confirmVoucher may be called repeatedly on the same\
+        \ voucher resource without negative effect.&quot;
+      operationId: &quot;confirmVoucher&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A voucher provision confirmation.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/TenderAdvice&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/TenderAdvice&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/TenderAdvice&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /suv/v1/vouchers/reversals:
+    post:
+      summary: &quot;Reverse a voucher provision request that failed or timed out.&quot;
+      description: &quot;If a voucherProvision request fails with one of the 5xx HTTP statuses\
+        \ code, or no response was received within the timeout period, it must be\
+        \ reversed to ensure the vendor knows to never expect further messages pertaining\
+        \ to the voucher. reverseVoucher must be repeated until a final HTTP status\
+        \ code is received (i.e. not 5xx). reverseVoucher may be called repeatedly\
+        \ on the same voucher resource without negative effect.&quot;
+      operationId: &quot;reverseVoucher&quot;
+      consumes:
+      - &quot;application/json&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - in: &quot;body&quot;
+        name: &quot;body&quot;
+        description: &quot;A voucher provision reversal.&quot;
+        required: true
+        schema:
+          $ref: &quot;#/definitions/BasicReversal&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicReversal&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/BasicReversal&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+securityDefinitions:
+  httpBasic:
+    description: &quot;All requests require HTTP basic authentication, where user name\
+      \ equals the value used in
+                    Client.Institution.id and password\
+      \ has been agreed with Electrum.&quot;
+    type: &quot;basic&quot;
+definitions:
+  Amounts:
+    type: &quot;object&quot;
+    properties:
+      requestAmount:
+        description: &quot;The transaction amount requested by the customer to be authorised\
+          \ or approved. This is the total amount the customer wishes to pay for a\
+          \ service or virtual product.&quot;
+        $ref: &quot;#/definitions/LedgerAmount&quot;
+      approvedAmount:
+        description: &quot;The transaction amount which was approved by the upstream entity.&quot;
+        $ref: &quot;#/definitions/LedgerAmount&quot;
+      feeAmount:
+        description: &quot;Fees charged by the upstream entity for processing the transaction.&quot;
+        $ref: &quot;#/definitions/LedgerAmount&quot;
+      balanceAmount:
+        description: &quot;The remaining balance on the customer's account.&quot;
+        $ref: &quot;#/definitions/LedgerAmount&quot;
+      additionalAmounts:
+        type: &quot;object&quot;
+        description: &quot;Any additional amounts that are involved in a transaction which\
+          \ don't appropriately fit into the other amount fields.&quot;
+        additionalProperties:
+          $ref: &quot;#/definitions/LedgerAmount&quot;
+    description: &quot;Amounts which make up the transaction. Absent amounts have zero\
+      \ value.&quot;
+  Barcode:
+    type: &quot;object&quot;
+    required:
+    - &quot;data&quot;
+    - &quot;encoding&quot;
+    properties:
+      data:
+        type: &quot;string&quot;
+        description: &quot;Data to be encoded in the barcode&quot;
+      encoding:
+        type: &quot;string&quot;
+        description: &quot;Specifies the encoding used in the barcode&quot;
+    description: &quot;Used to indicate barcode information for a slip line.&quot;
+  BasicAdvice:
+    type: &quot;object&quot;
+    required:
+    - &quot;id&quot;
+    - &quot;requestId&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this advice, as defined\
+          \ for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      requestId:
+        type: &quot;string&quot;
+        description: &quot;The UUID identifying the request that this advice relates to&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;The unaltered thirdPartyIdentifiers array as supplied in the\
+          \ related BasicResponse message. Required if thirdPartyIdentifiers field\
+          \ was present in the BasicResponse. If no thirdPartyIdentifiers was received\
+          \ in the BasicResponse or no BasicResponse was received then this should\
+          \ be set to the thirdPartyIdentifiers sent in the original request.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+    description: &quot;The data required in all advice messages&quot;
+  BasicReversal:
+    type: &quot;object&quot;
+    required:
+    - &quot;id&quot;
+    - &quot;requestId&quot;
+    - &quot;reversalReason&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this advice, as defined\
+          \ for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      requestId:
+        type: &quot;string&quot;
+        description: &quot;The UUID identifying the request that this advice relates to&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;The unaltered thirdPartyIdentifiers array as supplied in the\
+          \ related BasicResponse message. Required if thirdPartyIdentifiers field\
+          \ was present in the BasicResponse. If no thirdPartyIdentifiers was received\
+          \ in the BasicResponse or no BasicResponse was received then this should\
+          \ be set to the thirdPartyIdentifiers sent in the original request.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      reversalReason:
+        type: &quot;string&quot;
+        description: &quot;The reason for the reversal&quot;
+        enum:
+        - &quot;TIMEOUT&quot;
+        - &quot;CANCELLED&quot;
+        - &quot;RESPONSE_NOT_FINAL&quot;
+    description: &quot;An advice that notifies of the negative completion of a transaction.\
+      \ This can be either due to customer cancellation, or as a result of receiving\
+      \ a non-final response (or no response) to a request&quot;
+  ErrorDetail:
+    type: &quot;object&quot;
+    required:
+    - &quot;errorMessage&quot;
+    - &quot;errorType&quot;
+    - &quot;id&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying the message which caused\
+          \ the ErrorDetail, as defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      originalId:
+        type: &quot;string&quot;
+        description: &quot;The UUID of the original request message in the case of an error\
+          \ occurring for an advice message&quot;
+      errorType:
+        type: &quot;string&quot;
+        description: &quot;The type of error that occurred&quot;
+        enum:
+        - &quot;DUPLICATE_RECORD&quot;
+        - &quot;FORMAT_ERROR&quot;
+        - &quot;FUNCTION_NOT_SUPPORTED&quot;
+        - &quot;GENERAL_ERROR&quot;
+        - &quot;INVALID_AMOUNT&quot;
+        - &quot;ROUTING_ERROR&quot;
+        - &quot;TRANSACTION_NOT_SUPPORTED&quot;
+        - &quot;UNABLE_TO_LOCATE_RECORD&quot;
+        - &quot;UPSTREAM_UNAVAILABLE&quot;
+        - &quot;VOUCHER_ALREADY_REDEEMED&quot;
+        - &quot;VOUCHER_ALREADY_PROVISIONED&quot;
+        - &quot;VOUCHER_NOT_REDEEMABLE&quot;
+        - &quot;INVALID_MERCHANT&quot;
+        - &quot;INVALID_VOUCHER&quot;
+        - &quot;AUTHENTICATION_ERROR&quot;
+      errorMessage:
+        type: &quot;string&quot;
+        description: &quot;A short description of the error&quot;
+        minLength: 0
+        maxLength: 80
+      providerErrorCode:
+        type: &quot;string&quot;
+        description: &quot;The response code received from the voucher vendor in response\
+          \ to an operation.&quot;
+      providerErrorMessage:
+        type: &quot;string&quot;
+        description: &quot;The error message received from the voucher vendor in response\
+          \ to an operation.&quot;
+      detailMessage:
+        type: &quot;object&quot;
+        description: &quot;A free form detailed description of a particular failure condition\
+          \ may optionally be supplied&quot;
+    description: &quot;Represents the reasons an operation has failed.&quot;
+  Institution:
+    type: &quot;object&quot;
+    required:
+    - &quot;id&quot;
+    - &quot;name&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The institution's id as assigned by Electrum&quot;
+        pattern: &quot;[0-9]{1,11}&quot;
+      name:
+        type: &quot;string&quot;
+        description: &quot;The institutions's name&quot;
+        minLength: 0
+        maxLength: 40
+    description: &quot;Originating, acquiring, processing, or receiving institution details&quot;
+  LedgerAmount:
+    type: &quot;object&quot;
+    required:
+    - &quot;amount&quot;
+    - &quot;currency&quot;
+    properties:
+      amount:
+        type: &quot;integer&quot;
+        format: &quot;int64&quot;
+        description: &quot;Amount in minor denomination, e.g. R799.95 is encoded as 79995&quot;
+      currency:
+        type: &quot;string&quot;
+        description: &quot;Three digit currency number from ISO 4217, e.g. South African\
+          \ Rand is encoded as 710&quot;
+        pattern: &quot;[0-9]{3}&quot;
+      ledgerIndicator:
+        type: &quot;string&quot;
+        description: &quot;Indicates whether this amount is a debit or a credit. Only required\
+          \ when the amount can be either a debit or a credit&quot;
+        enum:
+        - &quot;DEBIT&quot;
+        - &quot;CREDIT&quot;
+    description: &quot;An amount object only containing value and currency, and optionally\
+      \ an indicator of DEBIT/CREDIT&quot;
+  Merchant:
+    type: &quot;object&quot;
+    required:
+    - &quot;merchantId&quot;
+    - &quot;merchantName&quot;
+    - &quot;merchantType&quot;
+    properties:
+      merchantType:
+        type: &quot;string&quot;
+        description: &quot;The assigned four digit merchant category code&quot;
+        pattern: &quot;[0-9]{4}&quot;
+      merchantId:
+        type: &quot;string&quot;
+        description: &quot;The assigned merchant identifier. Also known as card acceptor\
+          \ id&quot;
+        minLength: 15
+        maxLength: 15
+      merchantName:
+        description: &quot;The name of a merchant&quot;
+        $ref: &quot;#/definitions/MerchantName&quot;
+    description: &quot;Merchant related data. Must be included if available&quot;
+  MerchantName:
+    type: &quot;object&quot;
+    required:
+    - &quot;city&quot;
+    - &quot;country&quot;
+    - &quot;name&quot;
+    - &quot;region&quot;
+    properties:
+      name:
+        type: &quot;string&quot;
+        description: &quot;The merchant or trading as name associated with the merchant&quot;
+        minLength: 0
+        maxLength: 23
+      city:
+        type: &quot;string&quot;
+        description: &quot;The city where the merchant is located&quot;
+        minLength: 0
+        maxLength: 13
+      region:
+        type: &quot;string&quot;
+        description: &quot;The state or region where the merchant is located&quot;
+        minLength: 0
+        maxLength: 2
+      country:
+        type: &quot;string&quot;
+        description: &quot;The country where the merchant is located&quot;
+        minLength: 0
+        maxLength: 2
+    description: &quot;A container object representing the Merchant Name and Location&quot;
+  Originator:
+    type: &quot;object&quot;
+    required:
+    - &quot;institution&quot;
+    - &quot;merchant&quot;
+    - &quot;terminalId&quot;
+    properties:
+      institution:
+        description: &quot;The institution originating the request, as issued by Electrum&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      terminalId:
+        type: &quot;string&quot;
+        description: &quot;The ID that uniquely identifies each device or system in an\
+          \ originator's institution capable of sending requests. Required for transactions\
+          \ initiated from physical card entry or point-of-sale devices&quot;
+        minLength: 8
+        maxLength: 8
+      merchant:
+        description: &quot;Merchant data. Required if available&quot;
+        $ref: &quot;#/definitions/Merchant&quot;
+    description: &quot;The Originator object encapsulates data relating to the originator\
+      \ of the transaction&quot;
+  ProvisionRequest:
+    type: &quot;object&quot;
+    required:
+    - &quot;client&quot;
+    - &quot;id&quot;
+    - &quot;originator&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      originator:
+        description: &quot;Data relating to the originator of the transaction.&quot;
+        $ref: &quot;#/definitions/Originator&quot;
+      client:
+        description: &quot;Data relating to the sender of Transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      settlementEntity:
+        description: &quot;Data relating to the entity with whom the Merchant will settle\
+          \ the transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which ultimately processes the request.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;An array of identifiers which each identify the transaction\
+          \ within each entity's system.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      slipData:
+        description: &quot;Text to be printed on the customer receipt.&quot;
+        $ref: &quot;#/definitions/SlipData&quot;
+      basketRef:
+        type: &quot;string&quot;
+        description: &quot;Used to group multiple transactions which would otherwise be\
+          \ considered independent.&quot;
+      tranType:
+        type: &quot;string&quot;
+        description: &quot;Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.).&quot;
+        enum:
+        - &quot;GOODS_AND_SERVICES&quot;
+        - &quot;CASH_WITHDRAWAL&quot;
+        - &quot;DEBIT_ADJUSTMENT&quot;
+        - &quot;GOODS_AND_SERVICES_WITH_CASH_BACK&quot;
+        - &quot;NON_CASH&quot;
+        - &quot;RETURNS&quot;
+        - &quot;DEPOSIT&quot;
+        - &quot;CREDIT_ADJUSTMENT&quot;
+        - &quot;GENERAL_CREDIT&quot;
+        - &quot;AVAILABLE_FUNDS_INQUIRY&quot;
+        - &quot;BALANCE_INQUIRY&quot;
+        - &quot;GENERAL_INQUIRY&quot;
+        - &quot;CARD_VERIFICATION_INQUIRY&quot;
+        - &quot;CARDHOLDER_ACCOUNTS_TRANSFER&quot;
+        - &quot;GENERAL_TRANSFER&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT&quot;
+        - &quot;GENERAL_PAYMENT&quot;
+        - &quot;PAYMENT_TO_ACCOUNT&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT_TO_ACCOUNT&quot;
+        - &quot;PLACE_HOLD_ON_CARD&quot;
+        - &quot;GENERAL_ADMIN&quot;
+        - &quot;CHANGE_PIN&quot;
+        - &quot;CARD_HOLDER_INQUIRY&quot;
+        - &quot;POINTS_INQUIRY&quot;
+      srcAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      destAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      amounts:
+        description: &quot;If the voucher identified by the voucher field is not a fixed\
+          \ price product then the amounts field indicates the value of the product\
+          \ referred to.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+      tenders:
+        type: &quot;array&quot;
+        description: &quot;An array of tenders used to pay for the transaction.&quot;
+        items:
+          $ref: &quot;#/definitions/Tender&quot;
+      voucher:
+        description: &quot;The voucher that is being requested for provisioning.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+    description: &quot;Information about the voucher provision request.&quot;
+  ProvisionResponse:
+    type: &quot;object&quot;
+    required:
+    - &quot;client&quot;
+    - &quot;id&quot;
+    - &quot;originator&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    - &quot;voucher&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      originator:
+        description: &quot;Data relating to the originator of the transaction.&quot;
+        $ref: &quot;#/definitions/Originator&quot;
+      client:
+        description: &quot;Data relating to the sender of Transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      settlementEntity:
+        description: &quot;Data relating to the entity with whom the Merchant will settle\
+          \ the transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which ultimately processes the request.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;An array of identifiers which each identify the transaction\
+          \ within each entity's system.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      slipData:
+        description: &quot;Text to be printed on the customer receipt.&quot;
+        $ref: &quot;#/definitions/SlipData&quot;
+      basketRef:
+        type: &quot;string&quot;
+        description: &quot;Used to group multiple transactions which would otherwise be\
+          \ considered independent.&quot;
+      tranType:
+        type: &quot;string&quot;
+        description: &quot;Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.).&quot;
+        enum:
+        - &quot;GOODS_AND_SERVICES&quot;
+        - &quot;CASH_WITHDRAWAL&quot;
+        - &quot;DEBIT_ADJUSTMENT&quot;
+        - &quot;GOODS_AND_SERVICES_WITH_CASH_BACK&quot;
+        - &quot;NON_CASH&quot;
+        - &quot;RETURNS&quot;
+        - &quot;DEPOSIT&quot;
+        - &quot;CREDIT_ADJUSTMENT&quot;
+        - &quot;GENERAL_CREDIT&quot;
+        - &quot;AVAILABLE_FUNDS_INQUIRY&quot;
+        - &quot;BALANCE_INQUIRY&quot;
+        - &quot;GENERAL_INQUIRY&quot;
+        - &quot;CARD_VERIFICATION_INQUIRY&quot;
+        - &quot;CARDHOLDER_ACCOUNTS_TRANSFER&quot;
+        - &quot;GENERAL_TRANSFER&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT&quot;
+        - &quot;GENERAL_PAYMENT&quot;
+        - &quot;PAYMENT_TO_ACCOUNT&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT_TO_ACCOUNT&quot;
+        - &quot;PLACE_HOLD_ON_CARD&quot;
+        - &quot;GENERAL_ADMIN&quot;
+        - &quot;CHANGE_PIN&quot;
+        - &quot;CARD_HOLDER_INQUIRY&quot;
+        - &quot;POINTS_INQUIRY&quot;
+      srcAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      destAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      amounts:
+        description: &quot;The amounts for which a single use voucher is provisioned for.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+      voucher:
+        description: &quot;The voucher provisioned if the vendor processed the request\
+          \ successfully.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+    description: &quot;Information about the voucher provisioned.&quot;
+  RedemptionRequest:
+    type: &quot;object&quot;
+    required:
+    - &quot;client&quot;
+    - &quot;id&quot;
+    - &quot;originator&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    - &quot;voucher&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      originator:
+        description: &quot;Data relating to the originator of the transaction.&quot;
+        $ref: &quot;#/definitions/Originator&quot;
+      client:
+        description: &quot;Data relating to the sender of Transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      settlementEntity:
+        description: &quot;Data relating to the entity with whom the Merchant will settle\
+          \ the transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which ultimately processes the request.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;An array of identifiers which each identify the transaction\
+          \ within each entity's system.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      slipData:
+        description: &quot;Text to be printed on the customer receipt.&quot;
+        $ref: &quot;#/definitions/SlipData&quot;
+      basketRef:
+        type: &quot;string&quot;
+        description: &quot;Used to group multiple transactions which would otherwise be\
+          \ considered independent.&quot;
+      tranType:
+        type: &quot;string&quot;
+        description: &quot;Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.).&quot;
+        enum:
+        - &quot;GOODS_AND_SERVICES&quot;
+        - &quot;CASH_WITHDRAWAL&quot;
+        - &quot;DEBIT_ADJUSTMENT&quot;
+        - &quot;GOODS_AND_SERVICES_WITH_CASH_BACK&quot;
+        - &quot;NON_CASH&quot;
+        - &quot;RETURNS&quot;
+        - &quot;DEPOSIT&quot;
+        - &quot;CREDIT_ADJUSTMENT&quot;
+        - &quot;GENERAL_CREDIT&quot;
+        - &quot;AVAILABLE_FUNDS_INQUIRY&quot;
+        - &quot;BALANCE_INQUIRY&quot;
+        - &quot;GENERAL_INQUIRY&quot;
+        - &quot;CARD_VERIFICATION_INQUIRY&quot;
+        - &quot;CARDHOLDER_ACCOUNTS_TRANSFER&quot;
+        - &quot;GENERAL_TRANSFER&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT&quot;
+        - &quot;GENERAL_PAYMENT&quot;
+        - &quot;PAYMENT_TO_ACCOUNT&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT_TO_ACCOUNT&quot;
+        - &quot;PLACE_HOLD_ON_CARD&quot;
+        - &quot;GENERAL_ADMIN&quot;
+        - &quot;CHANGE_PIN&quot;
+        - &quot;CARD_HOLDER_INQUIRY&quot;
+        - &quot;POINTS_INQUIRY&quot;
+      srcAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      destAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      voucher:
+        description: &quot;The voucher to be redeemed.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+      amounts:
+        description: &quot;Indicates the amount for which the voucher is to be redeemed.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+    description: &quot;A description of a request to redeem a voucher. This object supports\
+      \ requests for redemptions against amounts different to the value for which\
+      \ the voucher was provisioned.&quot;
+  RedemptionResponse:
+    type: &quot;object&quot;
+    required:
+    - &quot;client&quot;
+    - &quot;id&quot;
+    - &quot;originator&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      originator:
+        description: &quot;Data relating to the originator of the transaction.&quot;
+        $ref: &quot;#/definitions/Originator&quot;
+      client:
+        description: &quot;Data relating to the sender of Transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      settlementEntity:
+        description: &quot;Data relating to the entity with whom the Merchant will settle\
+          \ the transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which ultimately processes the request.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;An array of identifiers which each identify the transaction\
+          \ within each entity's system.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      slipData:
+        description: &quot;Text to be printed on the customer receipt.&quot;
+        $ref: &quot;#/definitions/SlipData&quot;
+      basketRef:
+        type: &quot;string&quot;
+        description: &quot;Used to group multiple transactions which would otherwise be\
+          \ considered independent.&quot;
+      tranType:
+        type: &quot;string&quot;
+        description: &quot;Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.).&quot;
+        enum:
+        - &quot;GOODS_AND_SERVICES&quot;
+        - &quot;CASH_WITHDRAWAL&quot;
+        - &quot;DEBIT_ADJUSTMENT&quot;
+        - &quot;GOODS_AND_SERVICES_WITH_CASH_BACK&quot;
+        - &quot;NON_CASH&quot;
+        - &quot;RETURNS&quot;
+        - &quot;DEPOSIT&quot;
+        - &quot;CREDIT_ADJUSTMENT&quot;
+        - &quot;GENERAL_CREDIT&quot;
+        - &quot;AVAILABLE_FUNDS_INQUIRY&quot;
+        - &quot;BALANCE_INQUIRY&quot;
+        - &quot;GENERAL_INQUIRY&quot;
+        - &quot;CARD_VERIFICATION_INQUIRY&quot;
+        - &quot;CARDHOLDER_ACCOUNTS_TRANSFER&quot;
+        - &quot;GENERAL_TRANSFER&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT&quot;
+        - &quot;GENERAL_PAYMENT&quot;
+        - &quot;PAYMENT_TO_ACCOUNT&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT_TO_ACCOUNT&quot;
+        - &quot;PLACE_HOLD_ON_CARD&quot;
+        - &quot;GENERAL_ADMIN&quot;
+        - &quot;CHANGE_PIN&quot;
+        - &quot;CARD_HOLDER_INQUIRY&quot;
+        - &quot;POINTS_INQUIRY&quot;
+      srcAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      destAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      voucher:
+        description: &quot;Describes the voucher provisioned by the vendor.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+      amounts:
+        description: &quot;Amounts which make up the transaction. Absent amounts have zero\
+          \ value.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+    description: &quot;Information about the voucher redemption outcome.&quot;
+  RefundRequest:
+    type: &quot;object&quot;
+    required:
+    - &quot;client&quot;
+    - &quot;id&quot;
+    - &quot;originator&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    - &quot;voucher&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      originator:
+        description: &quot;Data relating to the originator of the transaction.&quot;
+        $ref: &quot;#/definitions/Originator&quot;
+      client:
+        description: &quot;Data relating to the sender of Transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      settlementEntity:
+        description: &quot;Data relating to the entity with whom the Merchant will settle\
+          \ the transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which ultimately processes the request.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;An array of identifiers which each identify the transaction\
+          \ within each entity's system.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      slipData:
+        description: &quot;Text to be printed on the customer receipt.&quot;
+        $ref: &quot;#/definitions/SlipData&quot;
+      basketRef:
+        type: &quot;string&quot;
+        description: &quot;Used to group multiple transactions which would otherwise be\
+          \ considered independent.&quot;
+      tranType:
+        type: &quot;string&quot;
+        description: &quot;Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.).&quot;
+        enum:
+        - &quot;GOODS_AND_SERVICES&quot;
+        - &quot;CASH_WITHDRAWAL&quot;
+        - &quot;DEBIT_ADJUSTMENT&quot;
+        - &quot;GOODS_AND_SERVICES_WITH_CASH_BACK&quot;
+        - &quot;NON_CASH&quot;
+        - &quot;RETURNS&quot;
+        - &quot;DEPOSIT&quot;
+        - &quot;CREDIT_ADJUSTMENT&quot;
+        - &quot;GENERAL_CREDIT&quot;
+        - &quot;AVAILABLE_FUNDS_INQUIRY&quot;
+        - &quot;BALANCE_INQUIRY&quot;
+        - &quot;GENERAL_INQUIRY&quot;
+        - &quot;CARD_VERIFICATION_INQUIRY&quot;
+        - &quot;CARDHOLDER_ACCOUNTS_TRANSFER&quot;
+        - &quot;GENERAL_TRANSFER&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT&quot;
+        - &quot;GENERAL_PAYMENT&quot;
+        - &quot;PAYMENT_TO_ACCOUNT&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT_TO_ACCOUNT&quot;
+        - &quot;PLACE_HOLD_ON_CARD&quot;
+        - &quot;GENERAL_ADMIN&quot;
+        - &quot;CHANGE_PIN&quot;
+        - &quot;CARD_HOLDER_INQUIRY&quot;
+        - &quot;POINTS_INQUIRY&quot;
+      srcAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      destAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      amounts:
+        description: &quot;Indicates the amount for which the voucher should be refunded.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+      voucher:
+        description: &quot;The voucher to be refunded.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+    description: &quot;A description of a request to refund a voucher. This object supports\
+      \ requests for refunds for amounts different to the value for which the voucher\
+      \ was originally redeemed.&quot;
+  RefundResponse:
+    type: &quot;object&quot;
+    required:
+    - &quot;client&quot;
+    - &quot;id&quot;
+    - &quot;originator&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      originator:
+        description: &quot;Data relating to the originator of the transaction.&quot;
+        $ref: &quot;#/definitions/Originator&quot;
+      client:
+        description: &quot;Data relating to the sender of Transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      settlementEntity:
+        description: &quot;Data relating to the entity with whom the Merchant will settle\
+          \ the transaction.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which ultimately processes the request.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;An array of identifiers which each identify the transaction\
+          \ within each entity's system.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      slipData:
+        description: &quot;Text to be printed on the customer receipt.&quot;
+        $ref: &quot;#/definitions/SlipData&quot;
+      basketRef:
+        type: &quot;string&quot;
+        description: &quot;Used to group multiple transactions which would otherwise be\
+          \ considered independent.&quot;
+      tranType:
+        type: &quot;string&quot;
+        description: &quot;Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.).&quot;
+        enum:
+        - &quot;GOODS_AND_SERVICES&quot;
+        - &quot;CASH_WITHDRAWAL&quot;
+        - &quot;DEBIT_ADJUSTMENT&quot;
+        - &quot;GOODS_AND_SERVICES_WITH_CASH_BACK&quot;
+        - &quot;NON_CASH&quot;
+        - &quot;RETURNS&quot;
+        - &quot;DEPOSIT&quot;
+        - &quot;CREDIT_ADJUSTMENT&quot;
+        - &quot;GENERAL_CREDIT&quot;
+        - &quot;AVAILABLE_FUNDS_INQUIRY&quot;
+        - &quot;BALANCE_INQUIRY&quot;
+        - &quot;GENERAL_INQUIRY&quot;
+        - &quot;CARD_VERIFICATION_INQUIRY&quot;
+        - &quot;CARDHOLDER_ACCOUNTS_TRANSFER&quot;
+        - &quot;GENERAL_TRANSFER&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT&quot;
+        - &quot;GENERAL_PAYMENT&quot;
+        - &quot;PAYMENT_TO_ACCOUNT&quot;
+        - &quot;PAYMENT_FROM_ACCOUNT_TO_ACCOUNT&quot;
+        - &quot;PLACE_HOLD_ON_CARD&quot;
+        - &quot;GENERAL_ADMIN&quot;
+        - &quot;CHANGE_PIN&quot;
+        - &quot;CARD_HOLDER_INQUIRY&quot;
+        - &quot;POINTS_INQUIRY&quot;
+      srcAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      destAccType:
+        type: &quot;string&quot;
+        description: &quot;This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings).&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;STORED_VALUE&quot;
+      amounts:
+        description: &quot;Indicates the amount for which the voucher was refunded. &quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+      voucher:
+        description: &quot;The voucher that was refunded.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+    description: &quot;Information about the voucher redemption outcome.&quot;
+  SlipData:
+    type: &quot;object&quot;
+    properties:
+      messageLines:
+        type: &quot;array&quot;
+        description: &quot;An array of text lines and optional formatting to be printed\
+          \ on the customer slip.&quot;
+        items:
+          $ref: &quot;#/definitions/SlipLine&quot;
+      slipWidth:
+        type: &quot;integer&quot;
+        format: &quot;int32&quot;
+        description: &quot;The width of the slip in normal (unformatted) characters.&quot;
+      issuerReference:
+        type: &quot;string&quot;
+        description: &quot;An identifier that is printed on the customer slip and uniquely\
+          \ identifies the payment on the service provider's system. This value is\
+          \ used by the customer to request a refund when the service supports this\
+          \ function, and it is thus important that this number is unique.&quot;
+        pattern: &quot;[A-Z0-9]{1,40}&quot;
+    description: &quot;Data that may be printed on the customer slip for information purposes&quot;
+  SlipLine:
+    type: &quot;object&quot;
+    required:
+    - &quot;text&quot;
+    properties:
+      barcode:
+        description: &quot;Barcode information for this line&quot;
+        $ref: &quot;#/definitions/Barcode&quot;
+      text:
+        type: &quot;string&quot;
+        description: &quot;Text contained on the line&quot;
+      fontWidthScaleFactor:
+        type: &quot;number&quot;
+        format: &quot;double&quot;
+        description: &quot;Scale factor for font width. Assume 1.0 (i.e. normal size) if\
+          \ not present.&quot;
+      fontHeightScaleFactor:
+        type: &quot;number&quot;
+        format: &quot;double&quot;
+        description: &quot;Scale factor for font height. Assume 1.0 (i.e. normal size)\
+          \ if not present.&quot;
+      line:
+        type: &quot;boolean&quot;
+        description: &quot;Denotes a solid line on the slip. Assume false if not present.&quot;
+        default: false
+      cut:
+        type: &quot;boolean&quot;
+        description: &quot;Indicates the slip should be cut at this line. Assume false\
+          \ if not present.&quot;
+        default: false
+    description: &quot;A line of text to be printed on the till slip&quot;
+  Tender:
+    type: &quot;object&quot;
+    required:
+    - &quot;amount&quot;
+    - &quot;tenderType&quot;
+    properties:
+      accountType:
+        type: &quot;string&quot;
+        description: &quot;The type of account&quot;
+        enum:
+        - &quot;DEFAULT&quot;
+        - &quot;SAVINGS&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT&quot;
+        - &quot;UNIVERSAL&quot;
+        - &quot;ELECTRONIC_PURSE&quot;
+        - &quot;STORED_VALUE&quot;
+      amount:
+        description: &quot;The tendered amount&quot;
+        $ref: &quot;#/definitions/LedgerAmount&quot;
+      cardNumber:
+        type: &quot;string&quot;
+        description: &quot;A PCI compliant masked card number, with at least the first\
+          \ 6 digits in the clear. Only applicable to card based transactions&quot;
+        pattern: &quot;[0-9]{6}[0-9*]{0,13}&quot;
+      reference:
+        type: &quot;string&quot;
+        description: &quot;A free text reference&quot;
+        minLength: 0
+        maxLength: 40
+      tenderType:
+        type: &quot;string&quot;
+        description: &quot;The type of tender used&quot;
+        enum:
+        - &quot;CASH&quot;
+        - &quot;CHEQUE&quot;
+        - &quot;CREDIT_CARD&quot;
+        - &quot;DEBIT_CARD&quot;
+        - &quot;WALLET&quot;
+        - &quot;ROUNDING&quot;
+        - &quot;GIFT_CARD&quot;
+        - &quot;LOYALTY_CARD&quot;
+        - &quot;OTHER&quot;
+    description: &quot;Details of the Tender used by a customer towards a payment&quot;
+  TenderAdvice:
+    type: &quot;object&quot;
+    required:
+    - &quot;id&quot;
+    - &quot;requestId&quot;
+    - &quot;tenders&quot;
+    - &quot;thirdPartyIdentifiers&quot;
+    - &quot;time&quot;
+    properties:
+      id:
+        type: &quot;string&quot;
+        description: &quot;The randomly generated UUID identifying this advice, as defined\
+          \ for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)&quot;
+      requestId:
+        type: &quot;string&quot;
+        description: &quot;The UUID identifying the request that this advice relates to&quot;
+      time:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision&quot;
+      thirdPartyIdentifiers:
+        type: &quot;array&quot;
+        description: &quot;The unaltered thirdPartyIdentifiers array as supplied in the\
+          \ related BasicResponse message. Required if thirdPartyIdentifiers field\
+          \ was present in the BasicResponse. If no thirdPartyIdentifiers was received\
+          \ in the BasicResponse or no BasicResponse was received then this should\
+          \ be set to the thirdPartyIdentifiers sent in the original request.&quot;
+        items:
+          $ref: &quot;#/definitions/ThirdPartyIdentifier&quot;
+      tenders:
+        type: &quot;array&quot;
+        description: &quot;An array of tenders used to pay for the transaction&quot;
+        items:
+          $ref: &quot;#/definitions/Tender&quot;
+    description: &quot;An advice that notifies of the successful completion of a transaction.&quot;
+  ThirdPartyIdentifier:
+    type: &quot;object&quot;
+    required:
+    - &quot;institutionId&quot;
+    - &quot;transactionIdentifier&quot;
+    properties:
+      institutionId:
+        type: &quot;string&quot;
+        description: &quot;The entity's institution's ID as assigned by Electrum.&quot;
+        pattern: &quot;[0-9]{1,11}&quot;
+      transactionIdentifier:
+        type: &quot;string&quot;
+        description: &quot;The identifier assigned to this transaction by the institution\
+          \ represented in institutionId. This value should be unique within the institution's\
+          \ system.&quot;
+    description: &quot;An identifier assigned by an entity which process the message. Identifiers\
+      \ are keyed by institution ID thereby enabling any institution to recall a transaction\
+      \ within the entity's own system using the entity's own identifier. Entity's\
+      \ must not alter the identifier set by another entity. Once an identifier has\
+      \ been set by an entity, all other entity's must send that identifier in subsequent\
+      \ messages.&quot;
+  Voucher:
+    type: &quot;object&quot;
+    properties:
+      code:
+        type: &quot;string&quot;
+        description: &quot;The voucher’s code used by the customer to redeem the voucher.\
+          \ This must be present in ProvisionResponse, RedemptionRequest and RefundRequest\
+          \ messages. This may be present in a ProvisionRequest if the voucher vendor\
+          \ allows the client to set the voucher code. It is recommended this field\
+          \ not be populated in other instances as it may be considered sensitive\
+          \ data.&quot;
+        pattern: &quot;[0-9]{1,20}&quot;
+      expiryDate:
+        type: &quot;string&quot;
+        format: &quot;date-time&quot;
+        description: &quot;The date and time at which the voucher expires. The format shall\
+          \ be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).&quot;
+      redeemInstructions:
+        type: &quot;array&quot;
+        description: &quot;An array of free text lines which provide the customer with\
+          \ information on how to redeem the voucher. These are intended to be printed\
+          \ on a customer's receipt slip.&quot;
+        items:
+          type: &quot;string&quot;
+    description: &quot;Specifically describes the voucher provisioned by the vendor.&quot;
+</code></pre>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2018 Released under the Apache 2.0 license &ndash;
+				
+				Documentation built with
+				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
+				using the
+				<a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a> theme.
+			</aside>
+
+			<footer class="footer">
+				<nav class="pagination" aria-label="Footer">
+  <div >
+    <img src="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-small-white.png" align="right"/>
+  </div>
+</nav>
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/electrumpayments.github.io\/suv-service-interface-docs\/';
+      var repo_id  = 'electrumpayments\/suv-service-interface';
+    
+    </script>
+
+    <script src="https://electrumpayments.github.io/suv-service-interface-docs/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

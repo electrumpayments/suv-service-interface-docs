@@ -1,0 +1,1602 @@
+---
+swagger: "2.0"
+info:
+  description: "The Electrum SUV Service describes an interface for single use voucher\
+    \ transactions."
+  version: "1.1.0"
+  title: "SUV Service Interface"
+  contact:
+    name: "Electrum Support"
+    url: "http://io.electrum"
+    email: "support@electrum.co.za"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "sandbox.electrum.io"
+basePath: "/suv/v1"
+schemes:
+- "https"
+paths:
+  /suv/v1/redemptions:
+    post:
+      summary: "Redeems a voucher."
+      description: "This operation is performed when a voucher is used as a form of\
+        \ tender. When used as a form of tender the consumer redeems the requestAmount\
+        \ against the voucher. The voucher vendor is responsible for authorizing the\
+        \ redemption. Once redeemed, the voucher  may not be used as a form of tender\
+        \ again."
+      operationId: "redeemVoucher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A redemption request."
+        required: true
+        schema:
+          $ref: "#/definitions/RedemptionRequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RedemptionResponse"
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/RedemptionResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/redemptions/confirmations:
+    post:
+      summary: "Confirm a voucher redemption request that completed successfully."
+      description: "Once a redemptionRequest has completed successfully there is typically\
+        \ no need to notify the voucher vendor of the successful completion of the\
+        \ sale. However, this API recognises that client implementations may be very\
+        \ familiar with dual message APIs and this confirmation operation is provided\
+        \ to achieve consistency across the API with respect to single vs dual message\
+        \ operations. By performing this operation the client indicates that no subsequent\
+        \ reversal of the redemption will be performed. Note though that the successful\
+        \ completion of the confirmRedemption operation does not guarantee that the\
+        \ voucher will not be refunded in future."
+      operationId: "confirmRedeem"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A voucher redemption confirmation."
+        required: true
+        schema:
+          $ref: "#/definitions/BasicAdvice"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BasicAdvice"
+        202:
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/BasicAdvice"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/redemptions/reversals:
+    post:
+      summary: "Reverse a voucher redemption request."
+      description: "If a voucherRedemption request fails with one of the 5xx HTTP\
+        \ statuses code, or no response was received within the timeout period, it\
+        \ must be reversed to ensure the vendor does not consider the voucher to be\
+        \ in redeemed state. reverseRedemption must be repeated until a final HTTP\
+        \ status code is received (i.e. not 5xx). reverseRedemption may be called\
+        \ repeatedly on the same voucher resource without negative effect. If a voucher\
+        \ redemption is reversed there is no need to perform a refund against the\
+        \ voucher."
+      operationId: "reverseRedeem"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A voucher redemption reversal."
+        required: true
+        schema:
+          $ref: "#/definitions/BasicReversal"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BasicReversal"
+        202:
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/BasicReversal"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/refunds:
+    post:
+      summary: "Refunds a voucher."
+      description: "This operation is performed when a voucher was previously used\
+        \ as a form of tender. Should a consumer request a refund from the merchant,\
+        \ the merchant may use the refundVoucher operation to request the voucher\
+        \ be placed back into an unredeemed state. The voucher vendor is responsible\
+        \ for authorizing the refund. Once refunded, the voucher may be used as a\
+        \ form of tender again if allowed by the voucher vendor."
+      operationId: "refundVoucher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A refund request."
+        required: true
+        schema:
+          $ref: "#/definitions/RefundRequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/RefundResponse"
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/RefundResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/refunds/confirmations:
+    post:
+      summary: "Confirm a voucher refund request that completed successfully."
+      description: "Once a refundRequest has completed successfully there is typically\
+        \ no need to notify the voucher vendor of the successful completion of the\
+        \ refund. However, this API recognises that client implementations may be\
+        \ very familiar with dual message APIs and this confirmation operation is\
+        \ provided to achieve consistency across the API with respect to single vs\
+        \ dual message operations. However, by performing this operation the client\
+        \ indicates that no subsequent reversal of the refund will be performed."
+      operationId: "confirmRefund"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A voucher refund confirmation."
+        required: true
+        schema:
+          $ref: "#/definitions/BasicAdvice"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BasicAdvice"
+        202:
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/BasicAdvice"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/refunds/reversals:
+    post:
+      summary: "Reverse a voucher refund request."
+      description: "If a voucherRefund request fails with one of the 5xx HTTP statuses\
+        \ code, or no response was received within the timeout period, it must be\
+        \ reversed to ensure the vendor does not consider the voucher to be in a refunded\
+        \ state. reverseRefund must be repeated until a final HTTP status code is\
+        \ received (i.e. not 5xx). reverseRefund may be called repeatedly on the same\
+        \ voucher resource without negative effect."
+      operationId: "reverseRefund"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A voucher refund reversal."
+        required: true
+        schema:
+          $ref: "#/definitions/BasicReversal"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BasicReversal"
+        202:
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/BasicReversal"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/vouchers:
+    post:
+      summary: "Request a voucher be provisioned."
+      description: "Requests a voucher from the voucher vendor."
+      operationId: "provisionVoucher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A provision request."
+        required: true
+        schema:
+          $ref: "#/definitions/ProvisionRequest"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ProvisionResponse"
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/ProvisionResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/vouchers/confirmations:
+    post:
+      summary: "Confirm a voucher provision request that completed successfully."
+      description: "Once a consumer has paid for a voucher and received the voucher\
+        \ from the merchant the merchant must notify the vendor that the voucher may\
+        \ be redeemed at some point in the future as per the voucher vendor's instructions.\
+        \ confirmVoucher must be repeated until a final HTTP status code is received\
+        \ (i.e. not HTTP 5xx). confirmVoucher may be called repeatedly on the same\
+        \ voucher resource without negative effect."
+      operationId: "confirmVoucher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A voucher provision confirmation."
+        required: true
+        schema:
+          $ref: "#/definitions/TenderAdvice"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/TenderAdvice"
+        202:
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/TenderAdvice"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /suv/v1/vouchers/reversals:
+    post:
+      summary: "Reverse a voucher provision request that failed or timed out."
+      description: "If a voucherProvision request fails with one of the 5xx HTTP statuses\
+        \ code, or no response was received within the timeout period, it must be\
+        \ reversed to ensure the vendor knows to never expect further messages pertaining\
+        \ to the voucher. reverseVoucher must be repeated until a final HTTP status\
+        \ code is received (i.e. not 5xx). reverseVoucher may be called repeatedly\
+        \ on the same voucher resource without negative effect."
+      operationId: "reverseVoucher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A voucher provision reversal."
+        required: true
+        schema:
+          $ref: "#/definitions/BasicReversal"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/BasicReversal"
+        202:
+          description: "Accepted"
+          schema:
+            $ref: "#/definitions/BasicReversal"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+securityDefinitions:
+  httpBasic:
+    description: "All requests require HTTP basic authentication, where user name\
+      \ equals the value used in\n                    Client.Institution.id and password\
+      \ has been agreed with Electrum."
+    type: "basic"
+definitions:
+  Amounts:
+    type: "object"
+    properties:
+      requestAmount:
+        description: "The transaction amount requested by the customer to be authorised\
+          \ or approved. This is the total amount the customer wishes to pay for a\
+          \ service or virtual product."
+        $ref: "#/definitions/LedgerAmount"
+      approvedAmount:
+        description: "The transaction amount which was approved by the upstream entity."
+        $ref: "#/definitions/LedgerAmount"
+      feeAmount:
+        description: "Fees charged by the upstream entity for processing the transaction."
+        $ref: "#/definitions/LedgerAmount"
+      balanceAmount:
+        description: "The remaining balance on the customer's account."
+        $ref: "#/definitions/LedgerAmount"
+      additionalAmounts:
+        type: "object"
+        description: "Any additional amounts that are involved in a transaction which\
+          \ don't appropriately fit into the other amount fields."
+        additionalProperties:
+          $ref: "#/definitions/LedgerAmount"
+    description: "Amounts which make up the transaction. Absent amounts have zero\
+      \ value."
+  Barcode:
+    type: "object"
+    required:
+    - "data"
+    - "encoding"
+    properties:
+      data:
+        type: "string"
+        description: "Data to be encoded in the barcode"
+      encoding:
+        type: "string"
+        description: "Specifies the encoding used in the barcode"
+    description: "Used to indicate barcode information for a slip line."
+  BasicAdvice:
+    type: "object"
+    required:
+    - "id"
+    - "requestId"
+    - "thirdPartyIdentifiers"
+    - "time"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this advice, as defined\
+          \ for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      requestId:
+        type: "string"
+        description: "The UUID identifying the request that this advice relates to"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "The unaltered thirdPartyIdentifiers array as supplied in the\
+          \ related BasicResponse message. Required if thirdPartyIdentifiers field\
+          \ was present in the BasicResponse. If no thirdPartyIdentifiers was received\
+          \ in the BasicResponse or no BasicResponse was received then this should\
+          \ be set to the thirdPartyIdentifiers sent in the original request."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+    description: "The data required in all advice messages"
+  BasicReversal:
+    type: "object"
+    required:
+    - "id"
+    - "requestId"
+    - "reversalReason"
+    - "thirdPartyIdentifiers"
+    - "time"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this advice, as defined\
+          \ for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      requestId:
+        type: "string"
+        description: "The UUID identifying the request that this advice relates to"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "The unaltered thirdPartyIdentifiers array as supplied in the\
+          \ related BasicResponse message. Required if thirdPartyIdentifiers field\
+          \ was present in the BasicResponse. If no thirdPartyIdentifiers was received\
+          \ in the BasicResponse or no BasicResponse was received then this should\
+          \ be set to the thirdPartyIdentifiers sent in the original request."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      reversalReason:
+        type: "string"
+        description: "The reason for the reversal"
+        enum:
+        - "TIMEOUT"
+        - "CANCELLED"
+        - "RESPONSE_NOT_FINAL"
+    description: "An advice that notifies of the negative completion of a transaction.\
+      \ This can be either due to customer cancellation, or as a result of receiving\
+      \ a non-final response (or no response) to a request"
+  ErrorDetail:
+    type: "object"
+    required:
+    - "errorMessage"
+    - "errorType"
+    - "id"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying the message which caused\
+          \ the ErrorDetail, as defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      originalId:
+        type: "string"
+        description: "The UUID of the original request message in the case of an error\
+          \ occurring for an advice message"
+      errorType:
+        type: "string"
+        description: "The type of error that occurred"
+        enum:
+        - "DUPLICATE_RECORD"
+        - "FORMAT_ERROR"
+        - "FUNCTION_NOT_SUPPORTED"
+        - "GENERAL_ERROR"
+        - "INVALID_AMOUNT"
+        - "ROUTING_ERROR"
+        - "TRANSACTION_NOT_SUPPORTED"
+        - "UNABLE_TO_LOCATE_RECORD"
+        - "UPSTREAM_UNAVAILABLE"
+        - "VOUCHER_ALREADY_REDEEMED"
+        - "VOUCHER_ALREADY_PROVISIONED"
+        - "VOUCHER_NOT_REDEEMABLE"
+        - "INVALID_MERCHANT"
+        - "INVALID_VOUCHER"
+        - "AUTHENTICATION_ERROR"
+      errorMessage:
+        type: "string"
+        description: "A short description of the error"
+        minLength: 0
+        maxLength: 80
+      providerErrorCode:
+        type: "string"
+        description: "The response code received from the voucher vendor in response\
+          \ to an operation."
+      providerErrorMessage:
+        type: "string"
+        description: "The error message received from the voucher vendor in response\
+          \ to an operation."
+      detailMessage:
+        type: "object"
+        description: "A free form detailed description of a particular failure condition\
+          \ may optionally be supplied"
+    description: "Represents the reasons an operation has failed."
+  Institution:
+    type: "object"
+    required:
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "string"
+        description: "The institution's id as assigned by Electrum"
+        pattern: "[0-9]{1,11}"
+      name:
+        type: "string"
+        description: "The institutions's name"
+        minLength: 0
+        maxLength: 40
+    description: "Originating, acquiring, processing, or receiving institution details"
+  LedgerAmount:
+    type: "object"
+    required:
+    - "amount"
+    - "currency"
+    properties:
+      amount:
+        type: "integer"
+        format: "int64"
+        description: "Amount in minor denomination, e.g. R799.95 is encoded as 79995"
+      currency:
+        type: "string"
+        description: "Three digit currency number from ISO 4217, e.g. South African\
+          \ Rand is encoded as 710"
+        pattern: "[0-9]{3}"
+      ledgerIndicator:
+        type: "string"
+        description: "Indicates whether this amount is a debit or a credit. Only required\
+          \ when the amount can be either a debit or a credit"
+        enum:
+        - "DEBIT"
+        - "CREDIT"
+    description: "An amount object only containing value and currency, and optionally\
+      \ an indicator of DEBIT/CREDIT"
+  Merchant:
+    type: "object"
+    required:
+    - "merchantId"
+    - "merchantName"
+    - "merchantType"
+    properties:
+      merchantType:
+        type: "string"
+        description: "The assigned four digit merchant category code"
+        pattern: "[0-9]{4}"
+      merchantId:
+        type: "string"
+        description: "The assigned merchant identifier. Also known as card acceptor\
+          \ id"
+        minLength: 15
+        maxLength: 15
+      merchantName:
+        description: "The name of a merchant"
+        $ref: "#/definitions/MerchantName"
+    description: "Merchant related data. Must be included if available"
+  MerchantName:
+    type: "object"
+    required:
+    - "city"
+    - "country"
+    - "name"
+    - "region"
+    properties:
+      name:
+        type: "string"
+        description: "The merchant or trading as name associated with the merchant"
+        minLength: 0
+        maxLength: 23
+      city:
+        type: "string"
+        description: "The city where the merchant is located"
+        minLength: 0
+        maxLength: 13
+      region:
+        type: "string"
+        description: "The state or region where the merchant is located"
+        minLength: 0
+        maxLength: 2
+      country:
+        type: "string"
+        description: "The country where the merchant is located"
+        minLength: 0
+        maxLength: 2
+    description: "A container object representing the Merchant Name and Location"
+  Originator:
+    type: "object"
+    required:
+    - "institution"
+    - "merchant"
+    - "terminalId"
+    properties:
+      institution:
+        description: "The institution originating the request, as issued by Electrum"
+        $ref: "#/definitions/Institution"
+      terminalId:
+        type: "string"
+        description: "The ID that uniquely identifies each device or system in an\
+          \ originator's institution capable of sending requests. Required for transactions\
+          \ initiated from physical card entry or point-of-sale devices"
+        minLength: 8
+        maxLength: 8
+      merchant:
+        description: "Merchant data. Required if available"
+        $ref: "#/definitions/Merchant"
+    description: "The Originator object encapsulates data relating to the originator\
+      \ of the transaction"
+  ProvisionRequest:
+    type: "object"
+    required:
+    - "client"
+    - "id"
+    - "originator"
+    - "thirdPartyIdentifiers"
+    - "time"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      originator:
+        description: "Data relating to the originator of the transaction."
+        $ref: "#/definitions/Originator"
+      client:
+        description: "Data relating to the sender of Transaction."
+        $ref: "#/definitions/Institution"
+      settlementEntity:
+        description: "Data relating to the entity with whom the Merchant will settle\
+          \ the transaction."
+        $ref: "#/definitions/Institution"
+      receiver:
+        description: "Data relating to the entity which ultimately processes the request."
+        $ref: "#/definitions/Institution"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "An array of identifiers which each identify the transaction\
+          \ within each entity's system."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      slipData:
+        description: "Text to be printed on the customer receipt."
+        $ref: "#/definitions/SlipData"
+      basketRef:
+        type: "string"
+        description: "Used to group multiple transactions which would otherwise be\
+          \ considered independent."
+      tranType:
+        type: "string"
+        description: "Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.)."
+        enum:
+        - "GOODS_AND_SERVICES"
+        - "CASH_WITHDRAWAL"
+        - "DEBIT_ADJUSTMENT"
+        - "GOODS_AND_SERVICES_WITH_CASH_BACK"
+        - "NON_CASH"
+        - "RETURNS"
+        - "DEPOSIT"
+        - "CREDIT_ADJUSTMENT"
+        - "GENERAL_CREDIT"
+        - "AVAILABLE_FUNDS_INQUIRY"
+        - "BALANCE_INQUIRY"
+        - "GENERAL_INQUIRY"
+        - "CARD_VERIFICATION_INQUIRY"
+        - "CARDHOLDER_ACCOUNTS_TRANSFER"
+        - "GENERAL_TRANSFER"
+        - "PAYMENT_FROM_ACCOUNT"
+        - "GENERAL_PAYMENT"
+        - "PAYMENT_TO_ACCOUNT"
+        - "PAYMENT_FROM_ACCOUNT_TO_ACCOUNT"
+        - "PLACE_HOLD_ON_CARD"
+        - "GENERAL_ADMIN"
+        - "CHANGE_PIN"
+        - "CARD_HOLDER_INQUIRY"
+        - "POINTS_INQUIRY"
+      srcAccType:
+        type: "string"
+        description: "This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      destAccType:
+        type: "string"
+        description: "This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      amounts:
+        description: "If the voucher identified by the voucher field is not a fixed\
+          \ price product then the amounts field indicates the value of the product\
+          \ referred to."
+        $ref: "#/definitions/Amounts"
+      tenders:
+        type: "array"
+        description: "An array of tenders used to pay for the transaction."
+        items:
+          $ref: "#/definitions/Tender"
+      voucher:
+        description: "The voucher that is being requested for provisioning."
+        $ref: "#/definitions/Voucher"
+    description: "Information about the voucher provision request."
+  ProvisionResponse:
+    type: "object"
+    required:
+    - "client"
+    - "id"
+    - "originator"
+    - "thirdPartyIdentifiers"
+    - "time"
+    - "voucher"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      originator:
+        description: "Data relating to the originator of the transaction."
+        $ref: "#/definitions/Originator"
+      client:
+        description: "Data relating to the sender of Transaction."
+        $ref: "#/definitions/Institution"
+      settlementEntity:
+        description: "Data relating to the entity with whom the Merchant will settle\
+          \ the transaction."
+        $ref: "#/definitions/Institution"
+      receiver:
+        description: "Data relating to the entity which ultimately processes the request."
+        $ref: "#/definitions/Institution"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "An array of identifiers which each identify the transaction\
+          \ within each entity's system."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      slipData:
+        description: "Text to be printed on the customer receipt."
+        $ref: "#/definitions/SlipData"
+      basketRef:
+        type: "string"
+        description: "Used to group multiple transactions which would otherwise be\
+          \ considered independent."
+      tranType:
+        type: "string"
+        description: "Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.)."
+        enum:
+        - "GOODS_AND_SERVICES"
+        - "CASH_WITHDRAWAL"
+        - "DEBIT_ADJUSTMENT"
+        - "GOODS_AND_SERVICES_WITH_CASH_BACK"
+        - "NON_CASH"
+        - "RETURNS"
+        - "DEPOSIT"
+        - "CREDIT_ADJUSTMENT"
+        - "GENERAL_CREDIT"
+        - "AVAILABLE_FUNDS_INQUIRY"
+        - "BALANCE_INQUIRY"
+        - "GENERAL_INQUIRY"
+        - "CARD_VERIFICATION_INQUIRY"
+        - "CARDHOLDER_ACCOUNTS_TRANSFER"
+        - "GENERAL_TRANSFER"
+        - "PAYMENT_FROM_ACCOUNT"
+        - "GENERAL_PAYMENT"
+        - "PAYMENT_TO_ACCOUNT"
+        - "PAYMENT_FROM_ACCOUNT_TO_ACCOUNT"
+        - "PLACE_HOLD_ON_CARD"
+        - "GENERAL_ADMIN"
+        - "CHANGE_PIN"
+        - "CARD_HOLDER_INQUIRY"
+        - "POINTS_INQUIRY"
+      srcAccType:
+        type: "string"
+        description: "This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      destAccType:
+        type: "string"
+        description: "This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      amounts:
+        description: "The amounts for which a single use voucher is provisioned for."
+        $ref: "#/definitions/Amounts"
+      voucher:
+        description: "The voucher provisioned if the vendor processed the request\
+          \ successfully."
+        $ref: "#/definitions/Voucher"
+    description: "Information about the voucher provisioned."
+  RedemptionRequest:
+    type: "object"
+    required:
+    - "client"
+    - "id"
+    - "originator"
+    - "thirdPartyIdentifiers"
+    - "time"
+    - "voucher"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      originator:
+        description: "Data relating to the originator of the transaction."
+        $ref: "#/definitions/Originator"
+      client:
+        description: "Data relating to the sender of Transaction."
+        $ref: "#/definitions/Institution"
+      settlementEntity:
+        description: "Data relating to the entity with whom the Merchant will settle\
+          \ the transaction."
+        $ref: "#/definitions/Institution"
+      receiver:
+        description: "Data relating to the entity which ultimately processes the request."
+        $ref: "#/definitions/Institution"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "An array of identifiers which each identify the transaction\
+          \ within each entity's system."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      slipData:
+        description: "Text to be printed on the customer receipt."
+        $ref: "#/definitions/SlipData"
+      basketRef:
+        type: "string"
+        description: "Used to group multiple transactions which would otherwise be\
+          \ considered independent."
+      tranType:
+        type: "string"
+        description: "Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.)."
+        enum:
+        - "GOODS_AND_SERVICES"
+        - "CASH_WITHDRAWAL"
+        - "DEBIT_ADJUSTMENT"
+        - "GOODS_AND_SERVICES_WITH_CASH_BACK"
+        - "NON_CASH"
+        - "RETURNS"
+        - "DEPOSIT"
+        - "CREDIT_ADJUSTMENT"
+        - "GENERAL_CREDIT"
+        - "AVAILABLE_FUNDS_INQUIRY"
+        - "BALANCE_INQUIRY"
+        - "GENERAL_INQUIRY"
+        - "CARD_VERIFICATION_INQUIRY"
+        - "CARDHOLDER_ACCOUNTS_TRANSFER"
+        - "GENERAL_TRANSFER"
+        - "PAYMENT_FROM_ACCOUNT"
+        - "GENERAL_PAYMENT"
+        - "PAYMENT_TO_ACCOUNT"
+        - "PAYMENT_FROM_ACCOUNT_TO_ACCOUNT"
+        - "PLACE_HOLD_ON_CARD"
+        - "GENERAL_ADMIN"
+        - "CHANGE_PIN"
+        - "CARD_HOLDER_INQUIRY"
+        - "POINTS_INQUIRY"
+      srcAccType:
+        type: "string"
+        description: "This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      destAccType:
+        type: "string"
+        description: "This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      voucher:
+        description: "The voucher to be redeemed."
+        $ref: "#/definitions/Voucher"
+      amounts:
+        description: "Indicates the amount for which the voucher is to be redeemed."
+        $ref: "#/definitions/Amounts"
+    description: "A description of a request to redeem a voucher. This object supports\
+      \ requests for redemptions against amounts different to the value for which\
+      \ the voucher was provisioned."
+  RedemptionResponse:
+    type: "object"
+    required:
+    - "client"
+    - "id"
+    - "originator"
+    - "thirdPartyIdentifiers"
+    - "time"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      originator:
+        description: "Data relating to the originator of the transaction."
+        $ref: "#/definitions/Originator"
+      client:
+        description: "Data relating to the sender of Transaction."
+        $ref: "#/definitions/Institution"
+      settlementEntity:
+        description: "Data relating to the entity with whom the Merchant will settle\
+          \ the transaction."
+        $ref: "#/definitions/Institution"
+      receiver:
+        description: "Data relating to the entity which ultimately processes the request."
+        $ref: "#/definitions/Institution"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "An array of identifiers which each identify the transaction\
+          \ within each entity's system."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      slipData:
+        description: "Text to be printed on the customer receipt."
+        $ref: "#/definitions/SlipData"
+      basketRef:
+        type: "string"
+        description: "Used to group multiple transactions which would otherwise be\
+          \ considered independent."
+      tranType:
+        type: "string"
+        description: "Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.)."
+        enum:
+        - "GOODS_AND_SERVICES"
+        - "CASH_WITHDRAWAL"
+        - "DEBIT_ADJUSTMENT"
+        - "GOODS_AND_SERVICES_WITH_CASH_BACK"
+        - "NON_CASH"
+        - "RETURNS"
+        - "DEPOSIT"
+        - "CREDIT_ADJUSTMENT"
+        - "GENERAL_CREDIT"
+        - "AVAILABLE_FUNDS_INQUIRY"
+        - "BALANCE_INQUIRY"
+        - "GENERAL_INQUIRY"
+        - "CARD_VERIFICATION_INQUIRY"
+        - "CARDHOLDER_ACCOUNTS_TRANSFER"
+        - "GENERAL_TRANSFER"
+        - "PAYMENT_FROM_ACCOUNT"
+        - "GENERAL_PAYMENT"
+        - "PAYMENT_TO_ACCOUNT"
+        - "PAYMENT_FROM_ACCOUNT_TO_ACCOUNT"
+        - "PLACE_HOLD_ON_CARD"
+        - "GENERAL_ADMIN"
+        - "CHANGE_PIN"
+        - "CARD_HOLDER_INQUIRY"
+        - "POINTS_INQUIRY"
+      srcAccType:
+        type: "string"
+        description: "This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      destAccType:
+        type: "string"
+        description: "This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      voucher:
+        description: "Describes the voucher provisioned by the vendor."
+        $ref: "#/definitions/Voucher"
+      amounts:
+        description: "Amounts which make up the transaction. Absent amounts have zero\
+          \ value."
+        $ref: "#/definitions/Amounts"
+    description: "Information about the voucher redemption outcome."
+  RefundRequest:
+    type: "object"
+    required:
+    - "client"
+    - "id"
+    - "originator"
+    - "thirdPartyIdentifiers"
+    - "time"
+    - "voucher"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      originator:
+        description: "Data relating to the originator of the transaction."
+        $ref: "#/definitions/Originator"
+      client:
+        description: "Data relating to the sender of Transaction."
+        $ref: "#/definitions/Institution"
+      settlementEntity:
+        description: "Data relating to the entity with whom the Merchant will settle\
+          \ the transaction."
+        $ref: "#/definitions/Institution"
+      receiver:
+        description: "Data relating to the entity which ultimately processes the request."
+        $ref: "#/definitions/Institution"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "An array of identifiers which each identify the transaction\
+          \ within each entity's system."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      slipData:
+        description: "Text to be printed on the customer receipt."
+        $ref: "#/definitions/SlipData"
+      basketRef:
+        type: "string"
+        description: "Used to group multiple transactions which would otherwise be\
+          \ considered independent."
+      tranType:
+        type: "string"
+        description: "Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.)."
+        enum:
+        - "GOODS_AND_SERVICES"
+        - "CASH_WITHDRAWAL"
+        - "DEBIT_ADJUSTMENT"
+        - "GOODS_AND_SERVICES_WITH_CASH_BACK"
+        - "NON_CASH"
+        - "RETURNS"
+        - "DEPOSIT"
+        - "CREDIT_ADJUSTMENT"
+        - "GENERAL_CREDIT"
+        - "AVAILABLE_FUNDS_INQUIRY"
+        - "BALANCE_INQUIRY"
+        - "GENERAL_INQUIRY"
+        - "CARD_VERIFICATION_INQUIRY"
+        - "CARDHOLDER_ACCOUNTS_TRANSFER"
+        - "GENERAL_TRANSFER"
+        - "PAYMENT_FROM_ACCOUNT"
+        - "GENERAL_PAYMENT"
+        - "PAYMENT_TO_ACCOUNT"
+        - "PAYMENT_FROM_ACCOUNT_TO_ACCOUNT"
+        - "PLACE_HOLD_ON_CARD"
+        - "GENERAL_ADMIN"
+        - "CHANGE_PIN"
+        - "CARD_HOLDER_INQUIRY"
+        - "POINTS_INQUIRY"
+      srcAccType:
+        type: "string"
+        description: "This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      destAccType:
+        type: "string"
+        description: "This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      amounts:
+        description: "Indicates the amount for which the voucher should be refunded."
+        $ref: "#/definitions/Amounts"
+      voucher:
+        description: "The voucher to be refunded."
+        $ref: "#/definitions/Voucher"
+    description: "A description of a request to refund a voucher. This object supports\
+      \ requests for refunds for amounts different to the value for which the voucher\
+      \ was originally redeemed."
+  RefundResponse:
+    type: "object"
+    required:
+    - "client"
+    - "id"
+    - "originator"
+    - "thirdPartyIdentifiers"
+    - "time"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this transaction, as\
+          \ defined for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      originator:
+        description: "Data relating to the originator of the transaction."
+        $ref: "#/definitions/Originator"
+      client:
+        description: "Data relating to the sender of Transaction."
+        $ref: "#/definitions/Institution"
+      settlementEntity:
+        description: "Data relating to the entity with whom the Merchant will settle\
+          \ the transaction."
+        $ref: "#/definitions/Institution"
+      receiver:
+        description: "Data relating to the entity which ultimately processes the request."
+        $ref: "#/definitions/Institution"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "An array of identifiers which each identify the transaction\
+          \ within each entity's system."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      slipData:
+        description: "Text to be printed on the customer receipt."
+        $ref: "#/definitions/SlipData"
+      basketRef:
+        type: "string"
+        description: "Used to group multiple transactions which would otherwise be\
+          \ considered independent."
+      tranType:
+        type: "string"
+        description: "Data relating to the type of transaction taking place (i.e.\
+          \ cash withdrawal, goods and services etc.)."
+        enum:
+        - "GOODS_AND_SERVICES"
+        - "CASH_WITHDRAWAL"
+        - "DEBIT_ADJUSTMENT"
+        - "GOODS_AND_SERVICES_WITH_CASH_BACK"
+        - "NON_CASH"
+        - "RETURNS"
+        - "DEPOSIT"
+        - "CREDIT_ADJUSTMENT"
+        - "GENERAL_CREDIT"
+        - "AVAILABLE_FUNDS_INQUIRY"
+        - "BALANCE_INQUIRY"
+        - "GENERAL_INQUIRY"
+        - "CARD_VERIFICATION_INQUIRY"
+        - "CARDHOLDER_ACCOUNTS_TRANSFER"
+        - "GENERAL_TRANSFER"
+        - "PAYMENT_FROM_ACCOUNT"
+        - "GENERAL_PAYMENT"
+        - "PAYMENT_TO_ACCOUNT"
+        - "PAYMENT_FROM_ACCOUNT_TO_ACCOUNT"
+        - "PLACE_HOLD_ON_CARD"
+        - "GENERAL_ADMIN"
+        - "CHANGE_PIN"
+        - "CARD_HOLDER_INQUIRY"
+        - "POINTS_INQUIRY"
+      srcAccType:
+        type: "string"
+        description: "This specifies the type of source account being used in the\
+          \ transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      destAccType:
+        type: "string"
+        description: "This specifies the type of destination account being used in\
+          \ the transaction (i.e. cheque, savings)."
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "GIFT_CARD"
+        - "STORED_VALUE"
+      amounts:
+        description: "Indicates the amount for which the voucher was refunded. "
+        $ref: "#/definitions/Amounts"
+      voucher:
+        description: "The voucher that was refunded."
+        $ref: "#/definitions/Voucher"
+    description: "Information about the voucher redemption outcome."
+  SlipData:
+    type: "object"
+    properties:
+      messageLines:
+        type: "array"
+        description: "An array of text lines and optional formatting to be printed\
+          \ on the customer slip."
+        items:
+          $ref: "#/definitions/SlipLine"
+      slipWidth:
+        type: "integer"
+        format: "int32"
+        description: "The width of the slip in normal (unformatted) characters."
+      issuerReference:
+        type: "string"
+        description: "An identifier that is printed on the customer slip and uniquely\
+          \ identifies the payment on the service provider's system. This value is\
+          \ used by the customer to request a refund when the service supports this\
+          \ function, and it is thus important that this number is unique."
+        pattern: "[A-Z0-9]{1,40}"
+    description: "Data that may be printed on the customer slip for information purposes"
+  SlipLine:
+    type: "object"
+    required:
+    - "text"
+    properties:
+      barcode:
+        description: "Barcode information for this line"
+        $ref: "#/definitions/Barcode"
+      text:
+        type: "string"
+        description: "Text contained on the line"
+      fontWidthScaleFactor:
+        type: "number"
+        format: "double"
+        description: "Scale factor for font width. Assume 1.0 (i.e. normal size) if\
+          \ not present."
+      fontHeightScaleFactor:
+        type: "number"
+        format: "double"
+        description: "Scale factor for font height. Assume 1.0 (i.e. normal size)\
+          \ if not present."
+      line:
+        type: "boolean"
+        description: "Denotes a solid line on the slip. Assume false if not present."
+        default: false
+      cut:
+        type: "boolean"
+        description: "Indicates the slip should be cut at this line. Assume false\
+          \ if not present."
+        default: false
+    description: "A line of text to be printed on the till slip"
+  Tender:
+    type: "object"
+    required:
+    - "amount"
+    - "tenderType"
+    properties:
+      accountType:
+        type: "string"
+        description: "The type of account"
+        enum:
+        - "DEFAULT"
+        - "SAVINGS"
+        - "CHEQUE"
+        - "CREDIT"
+        - "UNIVERSAL"
+        - "ELECTRONIC_PURSE"
+        - "STORED_VALUE"
+      amount:
+        description: "The tendered amount"
+        $ref: "#/definitions/LedgerAmount"
+      cardNumber:
+        type: "string"
+        description: "A PCI compliant masked card number, with at least the first\
+          \ 6 digits in the clear. Only applicable to card based transactions"
+        pattern: "[0-9]{6}[0-9*]{0,13}"
+      reference:
+        type: "string"
+        description: "A free text reference"
+        minLength: 0
+        maxLength: 40
+      tenderType:
+        type: "string"
+        description: "The type of tender used"
+        enum:
+        - "CASH"
+        - "CHEQUE"
+        - "CREDIT_CARD"
+        - "DEBIT_CARD"
+        - "WALLET"
+        - "ROUNDING"
+        - "GIFT_CARD"
+        - "LOYALTY_CARD"
+        - "OTHER"
+    description: "Details of the Tender used by a customer towards a payment"
+  TenderAdvice:
+    type: "object"
+    required:
+    - "id"
+    - "requestId"
+    - "tenders"
+    - "thirdPartyIdentifiers"
+    - "time"
+    properties:
+      id:
+        type: "string"
+        description: "The randomly generated UUID identifying this advice, as defined\
+          \ for a variant 4 UUID in [RFC 4122](https://tools.ietf.org/html/rfc4122)"
+      requestId:
+        type: "string"
+        description: "The UUID identifying the request that this advice relates to"
+      time:
+        type: "string"
+        format: "date-time"
+        description: "The date and time of the message as recorded by the sender.\
+          \ The format shall be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).\
+          \ It is recommended that the optional time-secfrac be included up to millisecond\
+          \ precision"
+      thirdPartyIdentifiers:
+        type: "array"
+        description: "The unaltered thirdPartyIdentifiers array as supplied in the\
+          \ related BasicResponse message. Required if thirdPartyIdentifiers field\
+          \ was present in the BasicResponse. If no thirdPartyIdentifiers was received\
+          \ in the BasicResponse or no BasicResponse was received then this should\
+          \ be set to the thirdPartyIdentifiers sent in the original request."
+        items:
+          $ref: "#/definitions/ThirdPartyIdentifier"
+      tenders:
+        type: "array"
+        description: "An array of tenders used to pay for the transaction"
+        items:
+          $ref: "#/definitions/Tender"
+    description: "An advice that notifies of the successful completion of a transaction."
+  ThirdPartyIdentifier:
+    type: "object"
+    required:
+    - "institutionId"
+    - "transactionIdentifier"
+    properties:
+      institutionId:
+        type: "string"
+        description: "The entity's institution's ID as assigned by Electrum."
+        pattern: "[0-9]{1,11}"
+      transactionIdentifier:
+        type: "string"
+        description: "The identifier assigned to this transaction by the institution\
+          \ represented in institutionId. This value should be unique within the institution's\
+          \ system."
+    description: "An identifier assigned by an entity which process the message. Identifiers\
+      \ are keyed by institution ID thereby enabling any institution to recall a transaction\
+      \ within the entity's own system using the entity's own identifier. Entity's\
+      \ must not alter the identifier set by another entity. Once an identifier has\
+      \ been set by an entity, all other entity's must send that identifier in subsequent\
+      \ messages."
+  Voucher:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "The voucher’s code used by the customer to redeem the voucher.\
+          \ This must be present in ProvisionResponse, RedemptionRequest and RefundRequest\
+          \ messages. This may be present in a ProvisionRequest if the voucher vendor\
+          \ allows the client to set the voucher code. It is recommended this field\
+          \ not be populated in other instances as it may be considered sensitive\
+          \ data."
+        pattern: "[0-9]{1,20}"
+      expiryDate:
+        type: "string"
+        format: "date-time"
+        description: "The date and time at which the voucher expires. The format shall\
+          \ be as defined for date-time in [RFC 3339 section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6)."
+      redeemInstructions:
+        type: "array"
+        description: "An array of free text lines which provide the customer with\
+          \ information on how to redeem the voucher. These are intended to be printed\
+          \ on a customer's receipt slip."
+        items:
+          type: "string"
+    description: "Specifically describes the voucher provisioned by the vendor."
