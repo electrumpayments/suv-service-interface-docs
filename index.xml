@@ -109,8 +109,7 @@ Upstream And Downstream Entities Upstream and downstream impart a convention for
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-##v1.1.1
-Released 28 November 2018
+v1.1.1 Released 28 November 2018
  Added @Valid and @NotNull annotations to resources, which allows the object to be recursively validated.  v1.1.0 Released 24 October 2018
  Added VoucherTransaction interface and implemented it in all provision, redemption and refund models Update base service interface version from v3.8.1 to v3.16.0.  Added PosConditionCode and included it in PosInfo Added msisdn to Customer Added PaymentMethod subtype CardPayment Added PaymentMethod subtype An32TokenPayment Added dateOfBirth and status field to Customer model Added utility for HTTP authentication Added JAVA 8 Times Added VasMessage interface such that Transaction and BasicAdvice implement.</description>
     </item>
