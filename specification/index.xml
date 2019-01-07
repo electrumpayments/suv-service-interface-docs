@@ -26,7 +26,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.2.0
+      <description> Version 1.3.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -53,9 +53,9 @@ Parameters  Name Located in Required Description Default Schema</description>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.2.0 Released 11 December 2018
- Updated ErrorDetail.ErrorType to include more specific values:  Added VOUCHER_ALREADY_CONFIRMED Added VOUCHER_ALREADY_REVERSED Added VOUCHER_ALREADY_REFUNDED Added VOUCHER_NOT_REFUNDED Added VOUCHER_NOT_REDEEMED Added REDEMPTION_ALREADY_CONFIRMED Added REDEMPTION_NOT_CONFIRMED Added REDEMPTION_ALREADY_REVERSED Added REFUND_ALREADY_CONFIRMED Added REFUND_ALREADY_REVERSED   v1.1.1 Released 28 November 2018
- Added @Valid and @NotNull annotations to resources, which allows the object to be recursively validated.</description>
+v1.3.0 Released 07 January 2019
+ Updated ErrorDetail.ErrorType to include more specific values:  Added INSUFFICIENT_AMOUNT   v1.2.0 Released 11 December 2018
+ Updated ErrorDetail.ErrorType to include more specific values:  Added VOUCHER_ALREADY_CONFIRMED Added VOUCHER_ALREADY_REVERSED Added VOUCHER_ALREADY_REFUNDED Added VOUCHER_NOT_REFUNDED Added VOUCHER_NOT_REDEEMED Added REDEMPTION_ALREADY_CONFIRMED Added REDEMPTION_NOT_CONFIRMED Added REDEMPTION_ALREADY_REVERSED Added REFUND_ALREADY_CONFIRMED Added REFUND_ALREADY_REVERSED   v1.</description>
     </item>
     
     <item>

@@ -66,4 +66,8 @@
     <priority>0</priority>
   </url>
   
+  <url>
+    <loc>https://electrumpayments.github.io/suv-service-interface-docs/testing/</loc>
+  </url>
+  
 </urlset>

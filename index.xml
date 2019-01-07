@@ -47,7 +47,7 @@ Language Support Java The Electrum implementation of the Single Use Voucher Serv
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.2.0
+      <description> Version 1.3.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -109,9 +109,9 @@ Upstream And Downstream Entities Upstream and downstream impart a convention for
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.2.0 Released 11 December 2018
- Updated ErrorDetail.ErrorType to include more specific values:  Added VOUCHER_ALREADY_CONFIRMED Added VOUCHER_ALREADY_REVERSED Added VOUCHER_ALREADY_REFUNDED Added VOUCHER_NOT_REFUNDED Added VOUCHER_NOT_REDEEMED Added REDEMPTION_ALREADY_CONFIRMED Added REDEMPTION_NOT_CONFIRMED Added REDEMPTION_ALREADY_REVERSED Added REFUND_ALREADY_CONFIRMED Added REFUND_ALREADY_REVERSED   v1.1.1 Released 28 November 2018
- Added @Valid and @NotNull annotations to resources, which allows the object to be recursively validated.</description>
+v1.3.0 Released 07 January 2019
+ Updated ErrorDetail.ErrorType to include more specific values:  Added INSUFFICIENT_AMOUNT   v1.2.0 Released 11 December 2018
+ Updated ErrorDetail.ErrorType to include more specific values:  Added VOUCHER_ALREADY_CONFIRMED Added VOUCHER_ALREADY_REVERSED Added VOUCHER_ALREADY_REFUNDED Added VOUCHER_NOT_REFUNDED Added VOUCHER_NOT_REDEEMED Added REDEMPTION_ALREADY_CONFIRMED Added REDEMPTION_NOT_CONFIRMED Added REDEMPTION_ALREADY_REVERSED Added REFUND_ALREADY_CONFIRMED Added REFUND_ALREADY_REVERSED   v1.</description>
     </item>
     
     <item>
@@ -133,6 +133,16 @@ The interface provides for all stages in the lifecycle of a single use voucher. 
       <description>The swagger (Open API) definition of the interface specification can be found here, as well as below.
 Many tools are available for processing swagger files, and using a code generation tool to create a boilerplate client or server can be an excellent starting point for development. We highly recommend looking at swagger-codegen for a generator in your preferred language when starting out.
 Swagger definition --- swagger: &amp;quot;2.0&amp;quot; info: description: &amp;quot;The Electrum SUV Service describes an interface for single use voucher\ \ transactions.</description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://electrumpayments.github.io/suv-service-interface-docs/testing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://electrumpayments.github.io/suv-service-interface-docs/testing/</guid>
+      <description>When developing a server or client implementation of the Suv Service Interface it is important to verify that the implementation conforms to the Suv Service Interface specification. To test client implementations a test server is available at https://suv-service-test-pack.herokuapp.com. To test server implementations a test pack containing Postman scripts is available here.
+Note that the test pack is made available simply as a tool to help test and investigate common implementation issues.</description>
     </item>
     
   </channel>

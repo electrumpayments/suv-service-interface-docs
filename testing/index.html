@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Overview - Single Use Voucher Service Interface</title>
+    <title>Testing - Single Use Voucher Service Interface</title>
     <meta name="generator" content="Hugo 0.29" />
 
     
-    <link rel="canonical" href="https://electrumpayments.github.io/suv-service-interface-docs/overview/">
+    <link rel="canonical" href="https://electrumpayments.github.io/suv-service-interface-docs/testing/">
     
 
-    <meta property="og:url" content="https://electrumpayments.github.io/suv-service-interface-docs/overview/">
+    <meta property="og:url" content="https://electrumpayments.github.io/suv-service-interface-docs/testing/">
     <meta property="og:title" content="Single Use Voucher Service Interface">
     <meta property="og:image" content="https://electrumpayments.github.io/suv-service-interface-docs/images/logo-square.png">
     <meta name="apple-mobile-web-app-title" content="Single Use Voucher Service Interface">
@@ -93,7 +93,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Overview
+        Testing
       </div>
     </div>
 
@@ -347,17 +347,53 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Overview </h1>
+			<h1>Testing </h1>
 
-			<p>The Electrum Single Use Voucher describes an interface for voucher based transactions. This includes purchasing vouchers, redeeming against vouchers and refunding redeemed vouchers.</p>
+			
 
-<p><strong>Version:</strong> 1.0.0</p>
+<p>When developing a server or client implementation of the Suv Service Interface it is important to verify that the implementation conforms to the Suv Service Interface specification. To test client implementations a test server is available at <a href="https://suv-service-test-pack.herokuapp.com">https://suv-service-test-pack.herokuapp.com</a>. To test server implementations a test pack containing Postman scripts is available <a href="https://github.com/electrumpayments/suv-service-test-pack/tree/master/test/postman">here</a>.</p>
 
-<p><strong>Contact information:</strong><br />
-Electrum Support<br />
-<a href="mailto:support@electrum.co.za">support@electrum.co.za</a></p>
+<p>Note that the test pack is made available simply as a tool to help test and investigate common implementation issues. However, the test pack is not intended to imply certification of the tested implementation&rsquo;s conformance to the Suv Service Interface.</p>
 
-<p><strong>License:</strong> <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a></p>
+<h2 id="important-security-considerations">Important Security Considerations</h2>
+
+<p>The test pack does not claim to implement any security features and should never be considered safe to use in a production environment or with real, sensitive data.</p>
+
+<p>Users of the test pack must bear in mind that any data sent from the test client or to the test server may be logged in plain text and without sufficient access control restrictions. Furthermore, the manner in which the test server handles requests does not guarantee records created by one entity cannot be viewed or modified by another. While the Postman scripts submit basic HTTP Authentication and the test server reads the Authentication header, these credentials only check the username in the header matches up with the client name in the request body. They do not safely segregate test clients&rsquo; messages from one another in all instances.</p>
+
+<h2 id="test-client">Test Client</h2>
+
+<p>The test client consists of a <a href="https://www.getpostman.com">Postman</a> environment with pre-built requests which can be sent to the server implementation to be tested. The Postman requests build valid Suv Service Interface messages, send them to the server implementation being tested and validate that the responses are formatted as expected.</p>
+
+<p>In order to test server implementations the tester requires only the Postman files.</p>
+
+<h3 id="operation">Operation</h3>
+
+<p>Requests are built dynamically with cross-referenced values (e.g. the voucherId of an original request within a reversal advice) kept in Postman environment variables. For example, a provision request script will generate the necessary values and store them, as well as the necessary response fields, which are then used in the next advice message. The tester should ensure that the correct provision request script is run before an advice script otherwise unintended field values may be submitted.</p>
+
+<h3 id="validation">Validation</h3>
+
+<p>The test client makes use of Postman&rsquo;s test checks to validate responses from the server. The tester should inspect the result of the test checks upon receipt of a response message to ensure the server being tested responded with the correct values.</p>
+
+<h2 id="test-server">Test server</h2>
+
+<p>The test server is provided as a web service constantly listening on <a href="https://suv-service-test-pack.herokuapp.com">https://suv-service-test-pack.herokuapp.com</a>.</p>
+
+<h3 id="operation-1">Operation</h3>
+
+<p>The test server listens on <a href="https://suv-service-test-pack.herokuapp.com">https://suv-service-test-pack.herokuapp.com</a> for Suv Service Interface messages. When a message is received it is cached and an appropriate response is returned. Normally, if the client implementation has sent a valid Suv Service Interface message, the test server will respond with a successful response. If the test server could not process the client&rsquo;s message due to a client error (e.g. a formatting error) then the test server will respond with an <a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/#errorDetail">errorDetail</a> object describing the error encountered. If some other error prevents the test server from processing the message (e.g. two successive provision requests with the same UUID) the test server will also attempt to describe such errors in the response to the client.</p>
+
+<h3 id="validation-1">Validation</h3>
+
+<p>The test server defines a DetailMessage model. The test server returns a DetailMessage object in the detailMessage field of the errorDetail object returned in error responses. The DetailMessage model&rsquo;s fields are all of the models defined in the Suv Service Interface as well as an extra field call formatErrors. The formatErrors field is an array of FormatError models. A FormatError has three fields:</p>
+
+<ul>
+<li>field - The name of the field which failed validation.</li>
+<li>msg - A description of the expected format of the field.</li>
+<li>value - The invalid value received in the field.</li>
+</ul>
+
+<p>The test server will validate the format of received messages. If the received message fails validation the test server will return a list of fields which failed validation.</p>
 
 
 			<aside class="copyright" role="note">
