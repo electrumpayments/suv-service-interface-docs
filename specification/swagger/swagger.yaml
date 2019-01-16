@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an interface for single use voucher\
     \ transactions."
-  version: "1.3.0"
+  version: "1.4.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -549,6 +549,13 @@ definitions:
           \ be set to the thirdPartyIdentifiers sent in the original request."
         items:
           $ref: "#/definitions/ThirdPartyIdentifier"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
     description: "The data required in all advice messages"
   BasicReversal:
     type: "object"
@@ -582,6 +589,13 @@ definitions:
           \ be set to the thirdPartyIdentifiers sent in the original request."
         items:
           $ref: "#/definitions/ThirdPartyIdentifier"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       reversalReason:
         type: "string"
         description: "The reason for the reversal"
@@ -868,6 +882,13 @@ definitions:
         - "ELECTRONIC_PURSE"
         - "GIFT_CARD"
         - "STORED_VALUE"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       amounts:
         description: "If the voucher identified by the voucher field is not a fixed\
           \ price product then the amounts field indicates the value of the product\
@@ -984,6 +1005,13 @@ definitions:
         - "ELECTRONIC_PURSE"
         - "GIFT_CARD"
         - "STORED_VALUE"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       amounts:
         description: "The amounts for which a single use voucher is provisioned for."
         $ref: "#/definitions/Amounts"
@@ -1094,6 +1122,13 @@ definitions:
         - "ELECTRONIC_PURSE"
         - "GIFT_CARD"
         - "STORED_VALUE"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       voucher:
         description: "The voucher to be redeemed."
         $ref: "#/definitions/Voucher"
@@ -1204,6 +1239,13 @@ definitions:
         - "ELECTRONIC_PURSE"
         - "GIFT_CARD"
         - "STORED_VALUE"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       voucher:
         description: "Describes the voucher provisioned by the vendor."
         $ref: "#/definitions/Voucher"
@@ -1314,6 +1356,13 @@ definitions:
         - "ELECTRONIC_PURSE"
         - "GIFT_CARD"
         - "STORED_VALUE"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       amounts:
         description: "Indicates the amount for which the voucher should be refunded."
         $ref: "#/definitions/Amounts"
@@ -1424,6 +1473,13 @@ definitions:
         - "ELECTRONIC_PURSE"
         - "GIFT_CARD"
         - "STORED_VALUE"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       amounts:
         description: "Indicates the amount for which the voucher was refunded. "
         $ref: "#/definitions/Amounts"
@@ -1559,6 +1615,13 @@ definitions:
           \ be set to the thirdPartyIdentifiers sent in the original request."
         items:
           $ref: "#/definitions/ThirdPartyIdentifier"
+      stan:
+        type: "string"
+        description: "The System Trace Audit Number can be used to locate transactions\
+          \ across different systems."
+      rrn:
+        type: "string"
+        description: "This is a reference set by the original source of the transaction."
       tenders:
         type: "array"
         description: "An array of tenders used to pay for the transaction"
