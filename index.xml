@@ -47,7 +47,7 @@ Language Support Java The Electrum implementation of the Single Use Voucher Serv
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.4.0
+      <description> Version 1.5.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -71,7 +71,7 @@ Security Definitions httpBasic   type basic   description All requests require H
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/operations/</guid>
       <description>redeemVoucher Redeems a voucher.
-POST /suv/v1/redemptions
+POST /redemptions
 This operation is performed when a voucher is used as a form of tender. When used as a form of tender the consumer redeems the requestAmount against the voucher. The voucher vendor is responsible for authorizing the redemption. Once redeemed, the voucher may not be used as a form of tender again.
 Security  httpBasic  Request Content-Type: application/json
 Parameters  Name Located in Required Description Default Schema</description>
@@ -109,9 +109,8 @@ Upstream And Downstream Entities Upstream and downstream impart a convention for
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.4.0 Released 17 January 2019
- Update base service interface version from v3.16.0 to v3.17.0  Added stan to Transaction and BasicAdvice models Added rrn to Transaction and BasicAdvice models   v1.3.0 Released 07 January 2019
- Updated ErrorDetail.ErrorType to include more specific values:  Added INSUFFICIENT_AMOUNT   v1.2.0 Released 11 December 2018</description>
+v1.5.0 Released 13 September 2019
+ Corrected repetition of API base path.  Note This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as /suv/v1/suv/v1/{operation} when they should have been of the more simple form /suv/v1/{operation}. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from v1 to v2.</description>
     </item>
     
     <item>

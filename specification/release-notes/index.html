@@ -353,6 +353,51 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
+<h2 id="v1-5-0">v1.5.0</h2>
+
+<p>Released 13 September 2019</p>
+
+<ul>
+<li>Corrected repetition of API base path.
+
+<ul>
+<li><em>Note</em> This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as <code>/suv/v1/suv/v1/{operation}</code> when they should have been of the more simple form <code>/suv/v1/{operation}</code>. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from <code>v1</code> to <code>v2</code>. However, all known projects depending on the Single Use Voucher Service Interface are already implemented using the simpler base path of <code>/suv/v1/{operation}</code>. Thus the decision was made to transparently fix the base path repetition bug as a minor version update as this was deemed to be a less disruptive change to all known projects.</li>
+</ul></li>
+<li>Added new <code>lookupVoucher</code> operation.</li>
+<li>Added <code>Product</code> field to <code>ProvisionRequest</code> and <code>ProvisionResponse</code> models.</li>
+<li>Updated base service interface version from v3.17.0 to v3.21.0
+
+<ul>
+<li>Added new field <code>emailAddress</code> to <code>Customer</code> model.</li>
+<li>Added new <code>Account.AccountType</code> value <code>CASH_PICKUP</code> for cash pickup scenarios.</li>
+<li>Changed masking of <code>CardPayment.pan</code> field to partial masking instead of full masking.</li>
+<li>Added new models:
+
+<ul>
+<li><code>Pin</code> a base PIN model
+
+<ul>
+<li><code>PinClear</code> for PINs in the clear</li>
+<li><code>PinEncrypted</code> for encrypted PIN blocks with the PIN block format, accountNumber and the key index</li>
+</ul></li>
+</ul></li>
+<li><code>Pin</code> was added to <code>CardPayment</code>, taking precedence over the existing <code>encyptedPin</code> field</li>
+<li>Added new models:</li>
+<li><code>ExchangeRate</code> to describe the exchange rate between two currencies.</li>
+<li><code>Account</code> to describe more varied accounts in a consistent manner. This has the following sub-types defined:
+
+<ul>
+<li><code>BankAccount</code></li>
+<li><code>IbanAccount</code></li>
+<li><code>IfsAccount</code></li>
+<li><code>SwiftAccount</code></li>
+<li><code>MobileWalletAccount</code></li>
+</ul></li>
+<li>The limitations on the <code>id</code> field of the <code>Institution</code> model have been removed to make the field suitable for a wider range of applications. The values in this field need no longer be defined by Electrum and similar values as recognised at third parties may now be carried in this field. However, care should be taken during implementation to ensure that different parties agree on the values which will be present in these fields.</li>
+<li>Added explicit fields for STAN and RRN values to <code>BasicAdvice</code> and <code>Transaction</code> models.</li>
+</ul></li>
+</ul>
+
 <h2 id="v1-4-0">v1.4.0</h2>
 
 <p>Released 17 January 2019</p>

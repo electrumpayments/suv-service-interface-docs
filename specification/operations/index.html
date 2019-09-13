@@ -355,9 +355,9 @@
 
 <p>Redeems a voucher.</p>
 
-<p><strong>POST /suv/v1/redemptions</strong></p>
+<p><strong>POST /redemptions</strong></p>
 
-<p>This operation is performed when a voucher is used as a form of tender. When used as a form of tender the consumer redeems the requestAmount against the voucher. The voucher vendor is responsible for authorizing the redemption. Once redeemed, the voucher  may not be used as a form of tender again.</p>
+<p>This operation is performed when a voucher is used as a form of tender. When used as a form of tender the consumer redeems the requestAmount against the voucher. The voucher vendor is responsible for authorizing the redemption. Once redeemed, the voucher may not be used as a form of tender again.</p>
 
 <h4 id="security">Security</h4>
 
@@ -447,7 +447,7 @@
 
 <p>Confirm a voucher redemption request that completed successfully.</p>
 
-<p><strong>POST /suv/v1/redemptions/confirmations</strong></p>
+<p><strong>POST /redemptions/confirmations</strong></p>
 
 <p>Once a redemptionRequest has completed successfully there is typically no need to notify the voucher vendor of the successful completion of the sale. However, this API recognises that client implementations may be very familiar with dual message APIs and this confirmation operation is provided to achieve consistency across the API with respect to single vs dual message operations. By performing this operation the client indicates that no subsequent reversal of the redemption will be performed. Note though that the successful completion of the confirmRedemption operation does not guarantee that the voucher will not be refunded in future.</p>
 
@@ -545,7 +545,7 @@
 
 <p>Reverse a voucher redemption request.</p>
 
-<p><strong>POST /suv/v1/redemptions/reversals</strong></p>
+<p><strong>POST /redemptions/reversals</strong></p>
 
 <p>If a voucherRedemption request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor does not consider the voucher to be in redeemed state. reverseRedemption must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseRedemption may be called repeatedly on the same voucher resource without negative effect. If a voucher redemption is reversed there is no need to perform a refund against the voucher.</p>
 
@@ -643,7 +643,7 @@
 
 <p>Refunds a voucher.</p>
 
-<p><strong>POST /suv/v1/refunds</strong></p>
+<p><strong>POST /refunds</strong></p>
 
 <p>This operation is performed when a voucher was previously used as a form of tender. Should a consumer request a refund from the merchant, the merchant may use the refundVoucher operation to request the voucher be placed back into an unredeemed state. The voucher vendor is responsible for authorizing the refund. Once refunded, the voucher may be used as a form of tender again if allowed by the voucher vendor.</p>
 
@@ -735,7 +735,7 @@
 
 <p>Confirm a voucher refund request that completed successfully.</p>
 
-<p><strong>POST /suv/v1/refunds/confirmations</strong></p>
+<p><strong>POST /refunds/confirmations</strong></p>
 
 <p>Once a refundRequest has completed successfully there is typically no need to notify the voucher vendor of the successful completion of the refund. However, this API recognises that client implementations may be very familiar with dual message APIs and this confirmation operation is provided to achieve consistency across the API with respect to single vs dual message operations. However, by performing this operation the client indicates that no subsequent reversal of the refund will be performed.</p>
 
@@ -833,7 +833,7 @@
 
 <p>Reverse a voucher refund request.</p>
 
-<p><strong>POST /suv/v1/refunds/reversals</strong></p>
+<p><strong>POST /refunds/reversals</strong></p>
 
 <p>If a voucherRefund request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor does not consider the voucher to be in a refunded state. reverseRefund must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseRefund may be called repeatedly on the same voucher resource without negative effect.</p>
 
@@ -927,13 +927,13 @@
 </tbody>
 </table>
 
-<h2 id="provisionvoucher">provisionVoucher</h2>
+<h2 id="lookupvoucher">lookupVoucher</h2>
 
-<p>Request a voucher be provisioned.</p>
+<p>Lookup a voucher using the voucher code.</p>
 
-<p><strong>POST /suv/v1/vouchers</strong></p>
+<p><strong>GET /vouchers</strong></p>
 
-<p>Requests a voucher from the voucher vendor.</p>
+<p>This operation is used to verify the validity of a voucher and possibly establish the value of a previously issued voucher (if supported by the server). This operation has no financial impact and is informative only.</p>
 
 <h4 id="security-6">Security</h4>
 
@@ -942,6 +942,123 @@
 </ul>
 
 <h4 id="request-6">Request</h4>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>voucherCode</th>
+    <td>query</td>
+    <td>yes</td>
+    <td>The voucher code to be looked up.</td>
+    <td></td>
+    <td>string </td></p>
+
+<p></tr></p>
+
+<p><tr>
+    <th>receiverInstId</th>
+    <td>query</td>
+    <td>no</td>
+    <td>The institution which issued the voucher. This assists to direct the voucher lookup request if the destination cannot be determined from the voucher code alone.</td>
+    <td></td>
+    <td>string </td></p>
+
+<p></tr></p>
+
+<p><tr>
+    <th>settlementEntityInstId</th>
+    <td>query</td>
+    <td>no</td>
+    <td>The institution via which the lookup should be processed. This serves to better direct the lookup request in the case that multiple upstream parties are able to process the request.</td>
+    <td></td>
+    <td>string </td></p>
+
+<p></tr></p>
+
+<p></table></p>
+
+<h4 id="response-6">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#voucherlookupresponse">VoucherLookupResponse</a></td>
+</tr>
+
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#voucherlookupresponse">VoucherLookupResponse</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="provisionvoucher">provisionVoucher</h2>
+
+<p>Request a voucher be provisioned.</p>
+
+<p><strong>POST 504</strong></p>
+
+<p>Requests a voucher from the voucher vendor.</p>
+
+<h4 id="security-7">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-7">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -967,7 +1084,7 @@
 
 <p></table></p>
 
-<h4 id="response-6">Response</h4>
+<h4 id="response-7">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1023,17 +1140,17 @@
 
 <p>Confirm a voucher provision request that completed successfully.</p>
 
-<p><strong>POST /suv/v1/vouchers/confirmations</strong></p>
+<p><strong>POST /vouchers/confirmations</strong></p>
 
 <p>Once a consumer has paid for a voucher and received the voucher from the merchant the merchant must notify the vendor that the voucher may be redeemed at some point in the future as per the voucher vendor&#x27;s instructions. confirmVoucher must be repeated until a final HTTP status code is received (i.e. not HTTP 5xx). confirmVoucher may be called repeatedly on the same voucher resource without negative effect.</p>
 
-<h4 id="security-7">Security</h4>
+<h4 id="security-8">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-7">Request</h4>
+<h4 id="request-8">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1059,7 +1176,7 @@
 
 <p></table></p>
 
-<h4 id="response-7">Response</h4>
+<h4 id="response-8">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1121,17 +1238,17 @@
 
 <p>Reverse a voucher provision request that failed or timed out.</p>
 
-<p><strong>POST /suv/v1/vouchers/reversals</strong></p>
+<p><strong>POST /vouchers/reversals</strong></p>
 
 <p>If a voucherProvision request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor knows to never expect further messages pertaining to the voucher. reverseVoucher must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseVoucher may be called repeatedly on the same voucher resource without negative effect.</p>
 
-<h4 id="security-8">Security</h4>
+<h4 id="security-9">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-8">Request</h4>
+<h4 id="request-9">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1157,7 +1274,7 @@
 
 <p></table></p>
 
-<h4 id="response-8">Response</h4>
+<h4 id="response-9">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 

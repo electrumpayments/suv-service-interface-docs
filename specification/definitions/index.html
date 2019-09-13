@@ -659,8 +659,8 @@
     <td>string</td>
     <td>required</td>
     <td></td>
-    <td>pattern:<i>[0-9]{1,11}</i><br/></td>
-    <td>The institution&rsquo;s id as assigned by Electrum</td>
+    <td></td>
+    <td>The institution&rsquo;s ID. API implementations should take care to set this field as appropriate for the implementation.</td>
 </tr>
 <tr>
     <td>name</td>
@@ -837,6 +837,45 @@
 
 <p></table></p>
 
+<h2 id="product">Product</h2>
+
+<p>Product related data.
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Restrictions</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>productId</td>
+    <td>string</td>
+    <td>required</td>
+    <td></td>
+    <td>pattern:<i>[0-9A-Za-z]{1,20}</i><br/></td>
+    <td>A vendor determined code identifying the product the voucher should pertain to.</td>
+</tr>
+<tr>
+    <td>barcode</td>
+    <td>string</td>
+    <td>optional</td>
+    <td></td>
+    <td>pattern:<i>[0-9A-Za-z]{1,13}</i><br/></td>
+    <td>A barcode code identifying the product. This is an alternative identifier for the product but does not supersede the productId.</td>
+</tr>
+<tr>
+    <td>name</td>
+    <td>string</td>
+    <td>optional</td>
+    <td></td>
+    <td>maxLength:<i>40</i><br/>minLength:<i>1</i><br/></td>
+    <td>The name of the product.</td>
+</tr></p>
+
+<p></table></p>
+
 <h2 id="provisionrequest">ProvisionRequest</h2>
 
 <p>Information about the voucher provision request.
@@ -984,6 +1023,14 @@
     <td></td>
     <td></td>
     <td>The voucher that is being requested for provisioning.</td>
+</tr>
+<tr>
+    <td>product</td>
+    <td><a href="#product">Product</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>The product for which the voucher should be provisioned.</td>
 </tr></p>
 
 <p></table></p>
@@ -1127,6 +1174,14 @@
     <td></td>
     <td></td>
     <td>The voucher provisioned if the vendor processed the request successfully.</td>
+</tr>
+<tr>
+    <td>product</td>
+    <td><a href="#product">Product</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>The product for which the voucher was provisioned. This should be the same as the product in the ProvisionRequest and is echoed back for convenience.</td>
 </tr></p>
 
 <p></table></p>
@@ -1948,8 +2003,8 @@
     <td>string</td>
     <td>required</td>
     <td></td>
-    <td>pattern:<i>[0-9]{1,11}</i><br/></td>
-    <td>The entity&rsquo;s institution&rsquo;s ID as assigned by Electrum.</td>
+    <td></td>
+    <td>The entity&rsquo;s institution ID.</td>
 </tr>
 <tr>
     <td>transactionIdentifier</td>
@@ -1997,6 +2052,61 @@
     <td></td>
     <td></td>
     <td>An array of free text lines which provide the customer with information on how to redeem the voucher. These are intended to be printed on a customer&rsquo;s receipt slip.</td>
+</tr></p>
+
+<p></table></p>
+
+<h2 id="voucherlookupresponse">VoucherLookupResponse</h2>
+
+<p>Information about a voucher such as its expiry date, its value and which entity the voucher belongs to.
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Restrictions</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>settlementEntity</td>
+    <td><a href="#institution">Institution</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about who the request was routed to for processing.</td>
+</tr>
+<tr>
+    <td>receiver</td>
+    <td><a href="#institution">Institution</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Data relating to the entity which issued the voucher.</td>
+</tr>
+<tr>
+    <td>amounts</td>
+    <td><a href="#amounts">Amounts</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>The amounts for which the single use voucher is provisioned for. If available, the monetary value of the voucher should be specified as a CREDIT amount in the approvedAmount field.</td>
+</tr>
+<tr>
+    <td>voucher</td>
+    <td><a href="#voucher">Voucher</a></td>
+    <td>required</td>
+    <td></td>
+    <td></td>
+    <td>Available details about the voucher.</td>
+</tr>
+<tr>
+    <td>product</td>
+    <td><a href="#product">Product</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>The product for which the voucher was provisioned.</td>
 </tr></p>
 
 <p></table></p>

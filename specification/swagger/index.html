@@ -362,7 +362,7 @@ swagger: &quot;2.0&quot;
 info:
   description: &quot;The Electrum SUV Service describes an interface for single use voucher\
     \ transactions.&quot;
-  version: &quot;1.4.0&quot;
+  version: &quot;1.5.0&quot;
   title: &quot;SUV Service Interface&quot;
   contact:
     name: &quot;Electrum Support&quot;
@@ -376,13 +376,13 @@ basePath: &quot;/suv/v1&quot;
 schemes:
 - &quot;https&quot;
 paths:
-  /suv/v1/redemptions:
+  /redemptions:
     post:
       summary: &quot;Redeems a voucher.&quot;
       description: &quot;This operation is performed when a voucher is used as a form of\
         \ tender. When used as a form of tender the consumer redeems the requestAmount\
         \ against the voucher. The voucher vendor is responsible for authorizing the\
-        \ redemption. Once redeemed, the voucher  may not be used as a form of tender\
+        \ redemption. Once redeemed, the voucher may not be used as a form of tender\
         \ again.&quot;
       operationId: &quot;redeemVoucher&quot;
       consumes:
@@ -423,7 +423,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/redemptions/confirmations:
+  /redemptions/confirmations:
     post:
       summary: &quot;Confirm a voucher redemption request that completed successfully.&quot;
       description: &quot;Once a redemptionRequest has completed successfully there is typically\
@@ -478,7 +478,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/redemptions/reversals:
+  /redemptions/reversals:
     post:
       summary: &quot;Reverse a voucher redemption request.&quot;
       description: &quot;If a voucherRedemption request fails with one of the 5xx HTTP\
@@ -532,7 +532,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/refunds:
+  /refunds:
     post:
       summary: &quot;Refunds a voucher.&quot;
       description: &quot;This operation is performed when a voucher was previously used\
@@ -580,7 +580,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/refunds/confirmations:
+  /refunds/confirmations:
     post:
       summary: &quot;Confirm a voucher refund request that completed successfully.&quot;
       description: &quot;Once a refundRequest has completed successfully there is typically\
@@ -633,7 +633,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/refunds/reversals:
+  /refunds/reversals:
     post:
       summary: &quot;Reverse a voucher refund request.&quot;
       description: &quot;If a voucherRefund request fails with one of the 5xx HTTP statuses\
@@ -685,7 +685,67 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/vouchers:
+  /vouchers:
+    get:
+      summary: &quot;Lookup a voucher using the voucher code.&quot;
+      description: &quot;This operation is used to verify the validity of a voucher and\
+        \ possibly establish the value of a previously issued voucher (if supported\
+        \ by the server). This operation has no financial impact and is informative\
+        \ only.&quot;
+      operationId: &quot;lookupVoucher&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - name: &quot;voucherCode&quot;
+        in: &quot;query&quot;
+        description: &quot;The voucher code to be looked up.&quot;
+        required: true
+        type: &quot;string&quot;
+      - name: &quot;receiverInstId&quot;
+        in: &quot;query&quot;
+        description: &quot;The institution which issued the voucher. This assists to direct\
+          \ the voucher lookup request if the destination cannot be determined from\
+          \ the voucher code alone.&quot;
+        required: false
+        type: &quot;string&quot;
+      - name: &quot;settlementEntityInstId&quot;
+        in: &quot;query&quot;
+        description: &quot;The institution via which the lookup should be processed. This\
+          \ serves to better direct the lookup request in the case that multiple upstream\
+          \ parties are able to process the request.&quot;
+        required: false
+        type: &quot;string&quot;
+      responses:
+        200:
+          description: &quot;successful operation&quot;
+          schema:
+            $ref: &quot;#/definitions/VoucherLookupResponse&quot;
+        202:
+          description: &quot;Accepted&quot;
+          schema:
+            $ref: &quot;#/definitions/VoucherLookupResponse&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        404:
+          description: &quot;Not Found&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
     post:
       summary: &quot;Request a voucher be provisioned.&quot;
       description: &quot;Requests a voucher from the voucher vendor.&quot;
@@ -728,7 +788,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/vouchers/confirmations:
+  /vouchers/confirmations:
     post:
       summary: &quot;Confirm a voucher provision request that completed successfully.&quot;
       description: &quot;Once a consumer has paid for a voucher and received the voucher\
@@ -780,7 +840,7 @@ paths:
             $ref: &quot;#/definitions/ErrorDetail&quot;
       security:
       - httpBasic: []
-  /suv/v1/vouchers/reversals:
+  /vouchers/reversals:
     post:
       summary: &quot;Reverse a voucher provision request that failed or timed out.&quot;
       description: &quot;If a voucherProvision request fails with one of the 5xx HTTP statuses\
@@ -1037,8 +1097,8 @@ definitions:
     properties:
       id:
         type: &quot;string&quot;
-        description: &quot;The institution's id as assigned by Electrum&quot;
-        pattern: &quot;[0-9]{1,11}&quot;
+        description: &quot;The institution's ID. API implementations should take care to\
+          \ set this field as appropriate for the implementation.&quot;
       name:
         type: &quot;string&quot;
         description: &quot;The institutions's name&quot;
@@ -1141,6 +1201,27 @@ definitions:
         $ref: &quot;#/definitions/Merchant&quot;
     description: &quot;The Originator object encapsulates data relating to the originator\
       \ of the transaction&quot;
+  Product:
+    type: &quot;object&quot;
+    required:
+    - &quot;productId&quot;
+    properties:
+      productId:
+        type: &quot;string&quot;
+        description: &quot;A vendor determined code identifying the product the voucher\
+          \ should pertain to.&quot;
+        pattern: &quot;[0-9A-Za-z]{1,20}&quot;
+      barcode:
+        type: &quot;string&quot;
+        description: &quot;A barcode code identifying the product. This is an alternative\
+          \ identifier for the product but does not supersede the productId.&quot;
+        pattern: &quot;[0-9A-Za-z]{1,13}&quot;
+      name:
+        type: &quot;string&quot;
+        description: &quot;The name of the product.&quot;
+        minLength: 1
+        maxLength: 40
+    description: &quot;Product related data.&quot;
   ProvisionRequest:
     type: &quot;object&quot;
     required:
@@ -1262,6 +1343,9 @@ definitions:
       voucher:
         description: &quot;The voucher that is being requested for provisioning.&quot;
         $ref: &quot;#/definitions/Voucher&quot;
+      product:
+        description: &quot;The product for which the voucher should be provisioned.&quot;
+        $ref: &quot;#/definitions/Product&quot;
     description: &quot;Information about the voucher provision request.&quot;
   ProvisionResponse:
     type: &quot;object&quot;
@@ -1379,6 +1463,11 @@ definitions:
         description: &quot;The voucher provisioned if the vendor processed the request\
           \ successfully.&quot;
         $ref: &quot;#/definitions/Voucher&quot;
+      product:
+        description: &quot;The product for which the voucher was provisioned. This should\
+          \ be the same as the product in the ProvisionRequest and is echoed back\
+          \ for convenience.&quot;
+        $ref: &quot;#/definitions/Product&quot;
     description: &quot;Information about the voucher provisioned.&quot;
   RedemptionRequest:
     type: &quot;object&quot;
@@ -1996,8 +2085,7 @@ definitions:
     properties:
       institutionId:
         type: &quot;string&quot;
-        description: &quot;The entity's institution's ID as assigned by Electrum.&quot;
-        pattern: &quot;[0-9]{1,11}&quot;
+        description: &quot;The entity's institution ID.&quot;
       transactionIdentifier:
         type: &quot;string&quot;
         description: &quot;The identifier assigned to this transaction by the institution\
@@ -2034,6 +2122,30 @@ definitions:
         items:
           type: &quot;string&quot;
     description: &quot;Specifically describes the voucher provisioned by the vendor.&quot;
+  VoucherLookupResponse:
+    type: &quot;object&quot;
+    required:
+    - &quot;voucher&quot;
+    properties:
+      settlementEntity:
+        description: &quot;Information about who the request was routed to for processing.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      receiver:
+        description: &quot;Data relating to the entity which issued the voucher.&quot;
+        $ref: &quot;#/definitions/Institution&quot;
+      amounts:
+        description: &quot;The amounts for which the single use voucher is provisioned\
+          \ for. If available, the monetary value of the voucher should be specified\
+          \ as a CREDIT amount in the approvedAmount field.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
+      voucher:
+        description: &quot;Available details about the voucher.&quot;
+        $ref: &quot;#/definitions/Voucher&quot;
+      product:
+        description: &quot;The product for which the voucher was provisioned.&quot;
+        $ref: &quot;#/definitions/Product&quot;
+    description: &quot;Information about a voucher such as its expiry date, its value and\
+      \ which entity the voucher belongs to.&quot;
 </code></pre>
 
 
