@@ -47,7 +47,7 @@ Language Support Java The Electrum implementation of the Single Use Voucher Serv
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.5.0
+      <description> Version 1.6.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -109,8 +109,8 @@ Upstream And Downstream Entities Upstream and downstream impart a convention for
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.5.0 Released 13 September 2019
- Corrected repetition of API base path.  Note This is breaking change to the API but is not treated as such. Previously the API defined paths to operations as /suv/v1/suv/v1/{operation} when they should have been of the more simple form /suv/v1/{operation}. Changing the API base path in this manner would typically be a breaking change and would be reflected as such by bumping the major version number in the URL from v1 to v2.</description>
+v1.6.0 Released 11 March 2020
+ Dropped a trailing forward slash from operation paths. The trailing forward slash implied operations were performed against groups of resources when they were intended to act on a single resource within the group.  Note, this change is a breaking change for the Java implementation of the API provided by Electrum: The RELATIVE_PATH and FULL_PATH constants for the following operations have changed and no longer end with a trailing forward slash:  lookupVoucher provisionVoucher redeemVoucher refundVoucher   The Jetty Server dependency was deemed unnecessary and removed.</description>
     </item>
     
     <item>

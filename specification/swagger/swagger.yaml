@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an interface for single use voucher\
     \ transactions."
-  version: "1.5.0"
+  version: "1.6.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"

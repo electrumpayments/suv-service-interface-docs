@@ -353,6 +353,27 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
+<h2 id="v1-6-0">v1.6.0</h2>
+
+<p>Released 11 March 2020</p>
+
+<ul>
+<li>Dropped a trailing forward slash from operation paths. The trailing forward slash implied operations were performed against groups of resources when they were intended to act on a single resource within the group.
+
+<ul>
+<li>Note, this change is a breaking change for the Java implementation of the API provided by Electrum:</li>
+<li>The <code>RELATIVE_PATH</code> and <code>FULL_PATH</code> constants for the following operations have changed and no longer end with a trailing forward slash:
+
+<ul>
+<li><code>lookupVoucher</code></li>
+<li><code>provisionVoucher</code></li>
+<li><code>redeemVoucher</code></li>
+<li><code>refundVoucher</code></li>
+</ul></li>
+</ul></li>
+<li>The Jetty Server dependency was deemed unnecessary and removed. The Javax Servlet API (v3.1.0) is instead required to be available in the runtime environment.</li>
+</ul>
+
 <h2 id="v1-5-0">v1.5.0</h2>
 
 <p>Released 13 September 2019</p>
@@ -484,7 +505,7 @@
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2019 Released under the Apache 2.0 license &ndash;
+				&copy; 2020 Released under the Apache 2.0 license &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
