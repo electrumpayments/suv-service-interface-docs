@@ -353,6 +353,19 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
+<h2 id="v1-7-0">v1.7.0</h2>
+
+<p>Released 06 May 2020</p>
+
+<ul>
+<li>Updated the <code>lookupVoucher</code> operation with the following changes:
+
+<ul>
+<li>Added a new <code>provisionRequestId</code> query parameter. This will allow a voucher to be looked up using the original <code>provisionVoucher</code> request ID that was used to provision that voucher.</li>
+<li>Made the <code>voucherCode</code> query parameter optional. This was done as a voucher can now also be looked up using the <code>provisionRequestId</code> parameter hence the <code>voucherCode</code> does not always need to be sent for <code>lookupVoucher</code> calls.</li>
+</ul></li>
+</ul>
+
 <h2 id="v1-6-0">v1.6.0</h2>
 
 <p>Released 11 March 2020</p>

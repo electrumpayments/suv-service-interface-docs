@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an interface for single use voucher\
     \ transactions."
-  version: "1.6.0"
+  version: "1.7.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -340,7 +340,13 @@ paths:
       - name: "voucherCode"
         in: "query"
         description: "The voucher code to be looked up."
-        required: true
+        required: false
+        type: "string"
+      - name: "provisionRequestId"
+        in: "query"
+        description: "The provision request id that was part of the original provision\
+          \ request to obtain a voucher."
+        required: false
         type: "string"
       - name: "receiverInstId"
         in: "query"
