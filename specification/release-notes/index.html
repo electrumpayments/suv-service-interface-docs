@@ -353,6 +353,26 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
+<h2 id="v1-8-0">v1.8.0</h2>
+
+<p>Released 13 May 2020</p>
+
+<ul>
+<li>Updated the <code>Voucher</code> model with the following new, optional, fields:
+
+<ul>
+<li><code>pin</code> which is a secret value that is required to be provided by a customer when redeeming the voucher using the code. Use of a PIN in addition to the voucher code adds security to the voucher redemption process.</li>
+<li><code>serialNumber</code> which can be used to identify the voucher in the vendor&rsquo;s system but cannot be used to redeem the voucher.</li>
+</ul></li>
+<li>The restrictions on the <code>Voucher.code</code> field have been relaxed to allow any String up to a length of 40 characters. This allows support for a wider range of voucher codes.</li>
+<li>Updated the <code>lookupVoucher</code> operation to accept a new optional query parameter: <code>voucherSerialNumber</code>.</li>
+<li>Fixed a break to the Java implementation introduced in v1.7.0:
+
+<ul>
+<li>A new method was introduced in the <code>IVouchersResource</code> class with no <code>default</code> implementation. A <code>default</code> implementation has been provided which will throw a <code>java.lang.UnsupportedOperationException</code>.</li>
+</ul></li>
+</ul>
+
 <h2 id="v1-7-0">v1.7.0</h2>
 
 <p>Released 06 May 2020</p>

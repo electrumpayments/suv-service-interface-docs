@@ -26,7 +26,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.7.0
+      <description> Version 1.8.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -53,8 +53,8 @@ Parameters  Name Located in Required Description Default Schema</description>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.7.0 Released 06 May 2020
- Updated the lookupVoucher operation with the following changes:  Added a new provisionRequestId query parameter. This will allow a voucher to be looked up using the original provisionVoucher request ID that was used to provision that voucher. Made the voucherCode query parameter optional. This was done as a voucher can now also be looked up using the provisionRequestId parameter hence the voucherCode does not always need to be sent for lookupVoucher calls.</description>
+v1.8.0 Released 13 May 2020
+ Updated the Voucher model with the following new, optional, fields:  pin which is a secret value that is required to be provided by a customer when redeeming the voucher using the code. Use of a PIN in addition to the voucher code adds security to the voucher redemption process.</description>
     </item>
     
     <item>
