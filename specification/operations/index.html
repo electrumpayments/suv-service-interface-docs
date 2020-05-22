@@ -639,13 +639,13 @@
 </tbody>
 </table>
 
-<h2 id="refundvoucher">refundVoucher</h2>
+<h2 id="lookupredemption">lookupRedemption</h2>
 
-<p>Refunds a voucher.</p>
+<p>Looks up and returns the outcome of a prior voucher redemption.</p>
 
-<p><strong>POST /refunds</strong></p>
+<p><strong>GET /redemptions/{requestId}</strong></p>
 
-<p>This operation is performed when a voucher was previously used as a form of tender. Should a consumer request a refund from the merchant, the merchant may use the refundVoucher operation to request the voucher be placed back into an unredeemed state. The voucher vendor is responsible for authorizing the refund. Once refunded, the voucher may be used as a form of tender again if allowed by the voucher vendor.</p>
+<p>This operation may be used to obtain the result of a previous redemption request. It returns one of five classes of response: the original approved response,the original error response, a HTTP status code of 102 if the original request is still being processed and no response is available yet, a HTTP status code of 403 if the client did not submit the original request and is therefore not permitted to obtain the response, a HTTP status code of 404 if the original request was not received.</p>
 
 <h4 id="security-3">Security</h4>
 
@@ -654,6 +654,109 @@
 </ul>
 
 <h4 id="request-3">Request</h4>
+
+<p>Parameters
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr></p>
+
+<p><tr>
+    <th>requestId</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>The randomly generated UUID of this request.</td>
+    <td></td>
+    <td>string </td></p>
+
+<p></tr></p>
+
+<p></table></p>
+
+<h4 id="response-3">Response</h4>
+
+<p><strong>Content-Type:</strong> application/json</p>
+
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Reason</th>
+<th>Response Model</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>102</td>
+<td>Processing</td>
+<td></td>
+</tr>
+
+<tr>
+<td>200</td>
+<td>OK</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#redemptionresponse">RedemptionResponse</a></td>
+</tr>
+
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td></td>
+</tr>
+
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td></td>
+</tr>
+
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td><a href="https://electrumpayments.github.io/suv-service-interface-docs/specification/definitions/#errordetail">ErrorDetail</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="refundvoucher">refundVoucher</h2>
+
+<p>Refunds a voucher.</p>
+
+<p><strong>POST /refunds</strong></p>
+
+<p>This operation is performed when a voucher was previously used as a form of tender. Should a consumer request a refund from the merchant, the merchant may use the refundVoucher operation to request the voucher be placed back into an unredeemed state. The voucher vendor is responsible for authorizing the refund. Once refunded, the voucher may be used as a form of tender again if allowed by the voucher vendor.</p>
+
+<h4 id="security-4">Security</h4>
+
+<ul>
+<li>httpBasic</li>
+</ul>
+
+<h4 id="request-4">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -679,7 +782,7 @@
 
 <p></table></p>
 
-<h4 id="response-3">Response</h4>
+<h4 id="response-4">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -739,13 +842,13 @@
 
 <p>Once a refundRequest has completed successfully there is typically no need to notify the voucher vendor of the successful completion of the refund. However, this API recognises that client implementations may be very familiar with dual message APIs and this confirmation operation is provided to achieve consistency across the API with respect to single vs dual message operations. However, by performing this operation the client indicates that no subsequent reversal of the refund will be performed.</p>
 
-<h4 id="security-4">Security</h4>
+<h4 id="security-5">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-4">Request</h4>
+<h4 id="request-5">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -771,7 +874,7 @@
 
 <p></table></p>
 
-<h4 id="response-4">Response</h4>
+<h4 id="response-5">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -837,13 +940,13 @@
 
 <p>If a voucherRefund request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor does not consider the voucher to be in a refunded state. reverseRefund must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseRefund may be called repeatedly on the same voucher resource without negative effect.</p>
 
-<h4 id="security-5">Security</h4>
+<h4 id="security-6">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-5">Request</h4>
+<h4 id="request-6">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -869,7 +972,7 @@
 
 <p></table></p>
 
-<h4 id="response-5">Response</h4>
+<h4 id="response-6">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -935,13 +1038,13 @@
 
 <p>This operation is used to verify the validity of a voucher and possibly establish the value of a previously issued voucher (if supported by the server). This operation has no financial impact and is informative only.</p>
 
-<h4 id="security-6">Security</h4>
+<h4 id="security-7">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-6">Request</h4>
+<h4 id="request-7">Request</h4>
 
 <p>Parameters
 <table border="1">
@@ -1006,7 +1109,7 @@
 
 <p></table></p>
 
-<h4 id="response-6">Response</h4>
+<h4 id="response-7">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1072,13 +1175,13 @@
 
 <p>Requests a voucher from the voucher vendor.</p>
 
-<h4 id="security-7">Security</h4>
+<h4 id="security-8">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-7">Request</h4>
+<h4 id="request-8">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1104,7 +1207,7 @@
 
 <p></table></p>
 
-<h4 id="response-7">Response</h4>
+<h4 id="response-8">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1164,13 +1267,13 @@
 
 <p>Once a consumer has paid for a voucher and received the voucher from the merchant the merchant must notify the vendor that the voucher may be redeemed at some point in the future as per the voucher vendor&#x27;s instructions. confirmVoucher must be repeated until a final HTTP status code is received (i.e. not HTTP 5xx). confirmVoucher may be called repeatedly on the same voucher resource without negative effect.</p>
 
-<h4 id="security-8">Security</h4>
+<h4 id="security-9">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-8">Request</h4>
+<h4 id="request-9">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1196,7 +1299,7 @@
 
 <p></table></p>
 
-<h4 id="response-8">Response</h4>
+<h4 id="response-9">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1262,13 +1365,13 @@
 
 <p>If a voucherProvision request fails with one of the 5xx HTTP statuses code, or no response was received within the timeout period, it must be reversed to ensure the vendor knows to never expect further messages pertaining to the voucher. reverseVoucher must be repeated until a final HTTP status code is received (i.e. not 5xx). reverseVoucher may be called repeatedly on the same voucher resource without negative effect.</p>
 
-<h4 id="security-9">Security</h4>
+<h4 id="security-10">Security</h4>
 
 <ul>
 <li>httpBasic</li>
 </ul>
 
-<h4 id="request-9">Request</h4>
+<h4 id="request-10">Request</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 
@@ -1294,7 +1397,7 @@
 
 <p></table></p>
 
-<h4 id="response-9">Response</h4>
+<h4 id="response-10">Response</h4>
 
 <p><strong>Content-Type:</strong> application/json</p>
 

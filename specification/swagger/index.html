@@ -362,7 +362,7 @@ swagger: &quot;2.0&quot;
 info:
   description: &quot;The Electrum SUV Service describes an interface for single use voucher\
     \ transactions.&quot;
-  version: &quot;1.8.0&quot;
+  version: &quot;1.9.0&quot;
   title: &quot;SUV Service Interface&quot;
   contact:
     name: &quot;Electrum Support&quot;
@@ -518,6 +518,54 @@ paths:
           description: &quot;Not Found&quot;
           schema:
             $ref: &quot;#/definitions/ErrorDetail&quot;
+        500:
+          description: &quot;Internal Server Error&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        503:
+          description: &quot;Service Unavailable&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        504:
+          description: &quot;Gateway Timeout&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+      security:
+      - httpBasic: []
+  /redemptions/{requestId}:
+    get:
+      summary: &quot;Looks up and returns the outcome of a prior voucher redemption.&quot;
+      description: &quot;This operation may be used to obtain the result of a previous\
+        \ redemption request. It returns one of five classes of response: the original\
+        \ approved response,the original error response, a HTTP status code of 102\
+        \ if the original request is still being processed and no response is available\
+        \ yet, a HTTP status code of 403 if the client did not submit the original\
+        \ request and is therefore not permitted to obtain the response, a HTTP status\
+        \ code of 404 if the original request was not received.&quot;
+      operationId: &quot;lookupRedemption&quot;
+      produces:
+      - &quot;application/json&quot;
+      parameters:
+      - name: &quot;requestId&quot;
+        in: &quot;path&quot;
+        description: &quot;The randomly generated UUID of this request.&quot;
+        required: true
+        type: &quot;string&quot;
+      responses:
+        102:
+          description: &quot;Processing&quot;
+        200:
+          description: &quot;OK&quot;
+          schema:
+            $ref: &quot;#/definitions/RedemptionResponse&quot;
+        400:
+          description: &quot;Bad Request&quot;
+          schema:
+            $ref: &quot;#/definitions/ErrorDetail&quot;
+        403:
+          description: &quot;Forbidden&quot;
+        404:
+          description: &quot;Not Found&quot;
         500:
           description: &quot;Internal Server Error&quot;
           schema:

@@ -26,7 +26,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.8.0
+      <description> Version 1.9.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -53,8 +53,9 @@ Parameters  Name Located in Required Description Default Schema</description>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.8.0 Released 13 May 2020
- Updated the Voucher model with the following new, optional, fields:  pin which is a secret value that is required to be provided by a customer when redeeming the voucher using the code. Use of a PIN in addition to the voucher code adds security to the voucher redemption process.</description>
+v1.9.0 Released 22 May 2020
+ Added a new lookupRedemption operation (HTTP GET /redemptions/{requestId}) which allows a caller to receive the result of a prior redemption request.  v1.8.0 Released 13 May 2020
+ Updated the Voucher model with the following new, optional, fields:  pin which is a secret value that is required to be provided by a customer when redeeming the voucher using the code.</description>
     </item>
     
     <item>

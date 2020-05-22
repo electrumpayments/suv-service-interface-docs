@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an interface for single use voucher\
     \ transactions."
-  version: "1.8.0"
+  version: "1.9.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -159,6 +159,54 @@ paths:
           description: "Not Found"
           schema:
             $ref: "#/definitions/ErrorDetail"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        503:
+          description: "Service Unavailable"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+      security:
+      - httpBasic: []
+  /redemptions/{requestId}:
+    get:
+      summary: "Looks up and returns the outcome of a prior voucher redemption."
+      description: "This operation may be used to obtain the result of a previous\
+        \ redemption request. It returns one of five classes of response: the original\
+        \ approved response,the original error response, a HTTP status code of 102\
+        \ if the original request is still being processed and no response is available\
+        \ yet, a HTTP status code of 403 if the client did not submit the original\
+        \ request and is therefore not permitted to obtain the response, a HTTP status\
+        \ code of 404 if the original request was not received."
+      operationId: "lookupRedemption"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "requestId"
+        in: "path"
+        description: "The randomly generated UUID of this request."
+        required: true
+        type: "string"
+      responses:
+        102:
+          description: "Processing"
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/RedemptionResponse"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/ErrorDetail"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
         500:
           description: "Internal Server Error"
           schema:
