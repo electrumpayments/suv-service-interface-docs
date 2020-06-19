@@ -681,6 +681,29 @@
 
 <p></table></p>
 
+<h2 id="hashedpinparameters">HashedPinParameters</h2>
+
+<p>A collection of parameters required to reliably reproduce the hashed value (excluding the actual PIN value).
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Restrictions</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>name</td>
+    <td>string</td>
+    <td>required</td>
+    <td></td>
+    <td>maxLength:<i>20</i><br/></td>
+    <td>The name of the hashing algorithm.</td>
+</tr></p>
+
+<p></table></p>
+
 <h2 id="institution">Institution</h2>
 
 <p>Originating, acquiring, processing, or receiving institution details
@@ -893,7 +916,7 @@
     <td>string</td>
     <td>required</td>
     <td></td>
-    <td><i>[CLEAR_PIN, ENCRYPTED_PIN]</i></td>
+    <td><i>[CLEAR_PIN, ENCRYPTED_PIN, HASHED_PIN]</i></td>
     <td>Whether the PIN is communicated in the clear or encrypted.</td>
 </tr></p>
 
@@ -914,6 +937,20 @@
 </table>
 
 <h2 id="pinencrypted">PinEncrypted</h2>
+
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Restrictions</th>
+    <th>Description</th>
+</tr>
+
+</table>
+
+<h2 id="pinhashed">PinHashed</h2>
 
 <table border="1">
 <tr>

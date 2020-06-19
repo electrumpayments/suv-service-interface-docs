@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an interface for single use voucher\
     \ transactions."
-  version: "1.9.0"
+  version: "1.10.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -734,11 +734,11 @@ definitions:
         type: "string"
         description: "PIN block format that was used when encrypting the PIN. Defaults\
           \ to ISO_9564_FORMAT_0."
-        default: "ISO_9564_FORMAT_0"
         enum:
         - "ISO_9564_FORMAT_0"
         - "ISO_9564_FORMAT_1"
         - "ISO_9564_FORMAT_3"
+        default: "ISO_9564_FORMAT_0"
       accountNumber:
         type: "string"
         description: "12 digit account number used when encrypting the PIN. When account\
@@ -820,6 +820,18 @@ definitions:
         description: "A free form detailed description of a particular failure condition\
           \ may optionally be supplied"
     description: "Represents the reasons an operation has failed."
+  HashedPinParameters:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "The name of the hashing algorithm."
+        minLength: 0
+        maxLength: 20
+    description: "A collection of parameters required to reliably reproduce the hashed\
+      \ value (excluding the actual PIN value)."
   Institution:
     type: "object"
     required:
@@ -944,6 +956,7 @@ definitions:
         enum:
         - "CLEAR_PIN"
         - "ENCRYPTED_PIN"
+        - "HASHED_PIN"
     description: "Base model for capturing either a clear PIN or encrypted PIN"
   PinClear:
     allOf:
@@ -979,6 +992,23 @@ definitions:
         \ where the service is expected to forward it to a third party, where the\
         \ calling client and said third party have agreed upon encryption parameters\
         \ beforehand."
+  PinHashed:
+    allOf:
+    - $ref: "#/definitions/Pin"
+    - type: "object"
+      required:
+      - "hash"
+      properties:
+        hash:
+          type: "string"
+          description: "A hashed PIN expressed as an ASCII string of hexadecimal values."
+          pattern: "[0-9,A-F]{1,512}"
+        hashedPinParameters:
+          description: "Parameters that describe the hashing algorithm used to hash\
+            \ the PIN."
+          $ref: "#/definitions/HashedPinParameters"
+      description: "A PIN, required to authorise a transaction, which has been hashed\
+        \ according to some hashing algorithm."
   Product:
     type: "object"
     required:

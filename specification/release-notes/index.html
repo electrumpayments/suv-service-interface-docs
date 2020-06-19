@@ -353,6 +353,21 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
+<h2 id="v1-10-0">v1.10.0</h2>
+
+<p>Released 19 June 2020</p>
+
+<ul>
+<li>Updated base service interface version from v3.21.0 to v3.24.0.
+
+<ul>
+<li>Added support for hashed PINs (via a new sub-type of <code>Pin</code> named <code>HashedPin</code>).</li>
+<li>Added utility methods to <code>JsonUtil</code> class to assist in reading the contents of a file as a string and deserialising JSON objects from files.</li>
+<li>Added new field <code>region</code> to <code>BankAccount</code> model for scenarios where the <code>routingCode</code> is not sufficient to uniquely identify a bank account.</li>
+<li>Added new field <code>emailAddress</code> to <code>Customer</code> model.</li>
+</ul></li>
+</ul>
+
 <h2 id="v1-9-0">v1.9.0</h2>
 
 <p>Released 22 May 2020</p>

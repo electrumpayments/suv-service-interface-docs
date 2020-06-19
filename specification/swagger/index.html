@@ -362,7 +362,7 @@ swagger: &quot;2.0&quot;
 info:
   description: &quot;The Electrum SUV Service describes an interface for single use voucher\
     \ transactions.&quot;
-  version: &quot;1.9.0&quot;
+  version: &quot;1.10.0&quot;
   title: &quot;SUV Service Interface&quot;
   contact:
     name: &quot;Electrum Support&quot;
@@ -1094,11 +1094,11 @@ definitions:
         type: &quot;string&quot;
         description: &quot;PIN block format that was used when encrypting the PIN. Defaults\
           \ to ISO_9564_FORMAT_0.&quot;
-        default: &quot;ISO_9564_FORMAT_0&quot;
         enum:
         - &quot;ISO_9564_FORMAT_0&quot;
         - &quot;ISO_9564_FORMAT_1&quot;
         - &quot;ISO_9564_FORMAT_3&quot;
+        default: &quot;ISO_9564_FORMAT_0&quot;
       accountNumber:
         type: &quot;string&quot;
         description: &quot;12 digit account number used when encrypting the PIN. When account\
@@ -1180,6 +1180,18 @@ definitions:
         description: &quot;A free form detailed description of a particular failure condition\
           \ may optionally be supplied&quot;
     description: &quot;Represents the reasons an operation has failed.&quot;
+  HashedPinParameters:
+    type: &quot;object&quot;
+    required:
+    - &quot;name&quot;
+    properties:
+      name:
+        type: &quot;string&quot;
+        description: &quot;The name of the hashing algorithm.&quot;
+        minLength: 0
+        maxLength: 20
+    description: &quot;A collection of parameters required to reliably reproduce the hashed\
+      \ value (excluding the actual PIN value).&quot;
   Institution:
     type: &quot;object&quot;
     required:
@@ -1304,6 +1316,7 @@ definitions:
         enum:
         - &quot;CLEAR_PIN&quot;
         - &quot;ENCRYPTED_PIN&quot;
+        - &quot;HASHED_PIN&quot;
     description: &quot;Base model for capturing either a clear PIN or encrypted PIN&quot;
   PinClear:
     allOf:
@@ -1339,6 +1352,23 @@ definitions:
         \ where the service is expected to forward it to a third party, where the\
         \ calling client and said third party have agreed upon encryption parameters\
         \ beforehand.&quot;
+  PinHashed:
+    allOf:
+    - $ref: &quot;#/definitions/Pin&quot;
+    - type: &quot;object&quot;
+      required:
+      - &quot;hash&quot;
+      properties:
+        hash:
+          type: &quot;string&quot;
+          description: &quot;A hashed PIN expressed as an ASCII string of hexadecimal values.&quot;
+          pattern: &quot;[0-9,A-F]{1,512}&quot;
+        hashedPinParameters:
+          description: &quot;Parameters that describe the hashing algorithm used to hash\
+            \ the PIN.&quot;
+          $ref: &quot;#/definitions/HashedPinParameters&quot;
+      description: &quot;A PIN, required to authorise a transaction, which has been hashed\
+        \ according to some hashing algorithm.&quot;
   Product:
     type: &quot;object&quot;
     required:
