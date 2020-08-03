@@ -47,7 +47,7 @@ Language Support Java The Electrum implementation of the Single Use Voucher Serv
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.10.0
+      <description> Version 1.11.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -109,8 +109,8 @@ Upstream And Downstream Entities Upstream and downstream impart a convention for
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.10.0 Released 19 June 2020
- Updated base service interface version from v3.21.0 to v3.24.0.  Added support for hashed PINs (via a new sub-type of Pin named HashedPin). Added utility methods to JsonUtil class to assist in reading the contents of a file as a string and deserialising JSON objects from files.</description>
+v1.11.0 Released 03 August 2020
+ Corrects breaking changes introduced in v1.7.0 and v1.8.0 of the API.  Summary: newer implementations of the lookupVoucher operation will call the previous implementation of the lookupVoucher operation by default. These changes (the original breaking changes as well as the corrections) only affect the Java implementation of the API as provided by Electrum.</description>
     </item>
     
     <item>
@@ -131,7 +131,7 @@ The interface provides for all stages in the lifecycle of a single use voucher. 
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/swagger/</guid>
       <description>The swagger (Open API) definition of the interface specification can be found here, as well as below.
 Many tools are available for processing swagger files, and using a code generation tool to create a boilerplate client or server can be an excellent starting point for development. We highly recommend looking at swagger-codegen for a generator in your preferred language when starting out.
-Swagger definition --- swagger: &amp;quot;2.0&amp;quot; info: description: &amp;quot;The Electrum SUV Service describes an interface for single use voucher\ \ transactions.</description>
+Swagger definition --- swagger: &amp;quot;2.0&amp;quot; info: description: &amp;quot;The Electrum SUV Service describes an interface\ \ for single use voucher transactions.</description>
     </item>
     
     <item>

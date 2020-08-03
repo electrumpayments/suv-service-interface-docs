@@ -360,9 +360,11 @@
 <pre><code class="language-yaml">---
 swagger: &quot;2.0&quot;
 info:
-  description: &quot;The Electrum SUV Service describes an interface for single use voucher\
-    \ transactions.&quot;
-  version: &quot;1.10.0&quot;
+  description: &quot;The Electrum SUV Service describes an
+                  interface\
+    \ for
+                  single use voucher transactions.&quot;
+  version: &quot;1.11.0&quot;
   title: &quot;SUV Service Interface&quot;
   contact:
     name: &quot;Electrum Support&quot;
@@ -953,10 +955,14 @@ paths:
       - httpBasic: []
 securityDefinitions:
   httpBasic:
-    description: &quot;All requests require HTTP basic authentication, where user name\
-      \ equals the value used in
-                    Client.Institution.id and password\
-      \ has been agreed with Electrum.&quot;
+    description: &quot;All requests require HTTP basic
+                    authentication,
+\
+      \                    where user name equals the value used in
+            \
+      \        Client.Institution.id
+                    and password has been agreed\
+      \ with Electrum.&quot;
     type: &quot;basic&quot;
 definitions:
   Amounts:
@@ -1035,6 +1041,15 @@ definitions:
       rrn:
         type: &quot;string&quot;
         description: &quot;This is a reference set by the original source of the transaction.&quot;
+      amounts:
+        description: &quot;Communicates the final amount for a transaction in the approvedAmount\
+          \ field. If absent from a reversal then a full reversal is implied (i.e.\
+          \ a final amount of zero). If absent from a confirmation then a full confirmation\
+          \ is implied (i.e. the final amount is the same as the approvedAmount of\
+          \ the  authorisation response). The approvedAmount in an advice message\
+          \ should be less than or equal to the approvedAmount of the authorisation\
+          \ response as stand-in transactions are not currently supported.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
     description: &quot;The data required in all advice messages&quot;
   BasicReversal:
     type: &quot;object&quot;
@@ -1075,6 +1090,15 @@ definitions:
       rrn:
         type: &quot;string&quot;
         description: &quot;This is a reference set by the original source of the transaction.&quot;
+      amounts:
+        description: &quot;Communicates the final amount for a transaction in the approvedAmount\
+          \ field. If absent from a reversal then a full reversal is implied (i.e.\
+          \ a final amount of zero). If absent from a confirmation then a full confirmation\
+          \ is implied (i.e. the final amount is the same as the approvedAmount of\
+          \ the  authorisation response). The approvedAmount in an advice message\
+          \ should be less than or equal to the approvedAmount of the authorisation\
+          \ response as stand-in transactions are not currently supported.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
       reversalReason:
         type: &quot;string&quot;
         description: &quot;The reason for the reversal&quot;
@@ -2239,6 +2263,15 @@ definitions:
       rrn:
         type: &quot;string&quot;
         description: &quot;This is a reference set by the original source of the transaction.&quot;
+      amounts:
+        description: &quot;Communicates the final amount for a transaction in the approvedAmount\
+          \ field. If absent from a reversal then a full reversal is implied (i.e.\
+          \ a final amount of zero). If absent from a confirmation then a full confirmation\
+          \ is implied (i.e. the final amount is the same as the approvedAmount of\
+          \ the  authorisation response). The approvedAmount in an advice message\
+          \ should be less than or equal to the approvedAmount of the authorisation\
+          \ response as stand-in transactions are not currently supported.&quot;
+        $ref: &quot;#/definitions/Amounts&quot;
       tenders:
         type: &quot;array&quot;
         description: &quot;An array of tenders used to pay for the transaction&quot;

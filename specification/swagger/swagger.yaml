@@ -1,9 +1,9 @@
 ---
 swagger: "2.0"
 info:
-  description: "The Electrum SUV Service describes an interface for single use voucher\
-    \ transactions."
-  version: "1.10.0"
+  description: "The Electrum SUV Service describes an\n                  interface\
+    \ for\n                  single use voucher transactions."
+  version: "1.11.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -594,9 +594,10 @@ paths:
       - httpBasic: []
 securityDefinitions:
   httpBasic:
-    description: "All requests require HTTP basic authentication, where user name\
-      \ equals the value used in\n                    Client.Institution.id and password\
-      \ has been agreed with Electrum."
+    description: "All requests require HTTP basic\n                    authentication,\n\
+      \                    where user name equals the value used in\n            \
+      \        Client.Institution.id\n                    and password has been agreed\
+      \ with Electrum."
     type: "basic"
 definitions:
   Amounts:
@@ -675,6 +676,15 @@ definitions:
       rrn:
         type: "string"
         description: "This is a reference set by the original source of the transaction."
+      amounts:
+        description: "Communicates the final amount for a transaction in the approvedAmount\
+          \ field. If absent from a reversal then a full reversal is implied (i.e.\
+          \ a final amount of zero). If absent from a confirmation then a full confirmation\
+          \ is implied (i.e. the final amount is the same as the approvedAmount of\
+          \ the  authorisation response). The approvedAmount in an advice message\
+          \ should be less than or equal to the approvedAmount of the authorisation\
+          \ response as stand-in transactions are not currently supported."
+        $ref: "#/definitions/Amounts"
     description: "The data required in all advice messages"
   BasicReversal:
     type: "object"
@@ -715,6 +725,15 @@ definitions:
       rrn:
         type: "string"
         description: "This is a reference set by the original source of the transaction."
+      amounts:
+        description: "Communicates the final amount for a transaction in the approvedAmount\
+          \ field. If absent from a reversal then a full reversal is implied (i.e.\
+          \ a final amount of zero). If absent from a confirmation then a full confirmation\
+          \ is implied (i.e. the final amount is the same as the approvedAmount of\
+          \ the  authorisation response). The approvedAmount in an advice message\
+          \ should be less than or equal to the approvedAmount of the authorisation\
+          \ response as stand-in transactions are not currently supported."
+        $ref: "#/definitions/Amounts"
       reversalReason:
         type: "string"
         description: "The reason for the reversal"
@@ -1879,6 +1898,15 @@ definitions:
       rrn:
         type: "string"
         description: "This is a reference set by the original source of the transaction."
+      amounts:
+        description: "Communicates the final amount for a transaction in the approvedAmount\
+          \ field. If absent from a reversal then a full reversal is implied (i.e.\
+          \ a final amount of zero). If absent from a confirmation then a full confirmation\
+          \ is implied (i.e. the final amount is the same as the approvedAmount of\
+          \ the  authorisation response). The approvedAmount in an advice message\
+          \ should be less than or equal to the approvedAmount of the authorisation\
+          \ response as stand-in transactions are not currently supported."
+        $ref: "#/definitions/Amounts"
       tenders:
         type: "array"
         description: "An array of tenders used to pay for the transaction"

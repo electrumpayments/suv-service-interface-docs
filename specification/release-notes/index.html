@@ -353,7 +353,25 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
-<h2 id="v1-10-0">v1.10.0</h2>
+<h2 id="v1-11-0">v1.11.0</h2>
+
+<p>Released 03 August 2020</p>
+
+<ul>
+<li>Corrects breaking changes introduced in v1.7.0 and v1.8.0 of the API.
+
+<ul>
+<li>Summary: newer implementations of the <code>lookupVoucher</code> operation will call the previous implementation of the <code>lookupVoucher</code> operation by default.</li>
+<li>These changes (the original breaking changes as well as the corrections) only affect the Java implementation of the API as provided by Electrum. They do not affect the API as defined by the supplied swagger.</li>
+<li>v1.7.0 and v1.8.0 introduced changes to the <code>lookupVoucher</code> operation. By default, these changes would return error responses when attempting to call the updated implementation of the <code>lookupVoucher</code> operation.</li>
+<li>However, the updated implementation also became the default implementation used when performing the <code>lookupVoucher</code> operation.</li>
+<li>This was because the updated implementation assumed ownership of the JAX-RS properties.</li>
+<li>Thus, existing implementations of the API would unexpectedly use the newest implementation of the <code>lookupVoucher</code> operation which returns error responses.</li>
+<li>The Java implementation has been corrected to use the prior implementation of the <code>lookupVoucher</code> operation as the default behaviour of the newer implementations.</li>
+</ul></li>
+</ul>
+
+<h2 id="v1-10-0-deprecated-see-v1-11-0">v1.10.0 (Deprecated - see V1.11.0)</h2>
 
 <p>Released 19 June 2020</p>
 
@@ -368,7 +386,7 @@
 </ul></li>
 </ul>
 
-<h2 id="v1-9-0">v1.9.0</h2>
+<h2 id="v1-9-0-deprecated-see-v1-11-0">v1.9.0 (Deprecated - see V1.11.0)</h2>
 
 <p>Released 22 May 2020</p>
 
@@ -376,7 +394,7 @@
 <li>Added a new <code>lookupRedemption</code> operation (<code>HTTP GET /redemptions/{requestId}</code>) which allows a caller to receive the result of a prior redemption request.</li>
 </ul>
 
-<h2 id="v1-8-0">v1.8.0</h2>
+<h2 id="v1-8-0-deprecated-see-v1-11-0">v1.8.0 (Deprecated - see V1.11.0)</h2>
 
 <p>Released 13 May 2020</p>
 
@@ -396,7 +414,7 @@
 </ul></li>
 </ul>
 
-<h2 id="v1-7-0">v1.7.0</h2>
+<h2 id="v1-7-0-deprecated-see-v1-11-0">v1.7.0 (Deprecated - see V1.11.0)</h2>
 
 <p>Released 06 May 2020</p>
 
