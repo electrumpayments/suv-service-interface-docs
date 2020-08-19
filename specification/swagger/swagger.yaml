@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an\n                  interface\
     \ for\n                  single use voucher transactions."
-  version: "1.11.0"
+  version: "1.12.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -812,6 +812,7 @@ definitions:
         - "VOUCHER_NOT_REFUNDED"
         - "VOUCHER_NOT_REDEEMABLE"
         - "VOUCHER_NOT_REDEEMED"
+        - "VOUCHER_STATUS_UNKNOWN"
         - "REDEMPTION_ALREADY_CONFIRMED"
         - "REDEMPTION_NOT_CONFIRMED"
         - "REDEMPTION_ALREADY_REVERSED"

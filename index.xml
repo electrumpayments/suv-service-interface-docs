@@ -47,7 +47,7 @@ Language Support Java The Electrum implementation of the Single Use Voucher Serv
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.11.0
+      <description> Version 1.12.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -109,8 +109,9 @@ Upstream And Downstream Entities Upstream and downstream impart a convention for
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.11.0 Released 03 August 2020
- Corrects breaking changes introduced in v1.7.0 and v1.8.0 of the API.  Summary: newer implementations of the lookupVoucher operation will call the previous implementation of the lookupVoucher operation by default. These changes (the original breaking changes as well as the corrections) only affect the Java implementation of the API as provided by Electrum.</description>
+v1.12.0 Released 19 August 2020
+ Updated ErrorDetail.ErrorType to include the following new value:  VOUCHER_STATUS_UNKNOWN - This errorType is shown when upstream has indicated that they cannot resolve the exact status of a requested voucher.    v1.11.0 Released 03 August 2020
+ Corrects breaking changes introduced in v1.7.0 and v1.</description>
     </item>
     
     <item>
