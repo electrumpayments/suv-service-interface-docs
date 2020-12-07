@@ -659,7 +659,7 @@
     <td>string</td>
     <td>required</td>
     <td></td>
-    <td><i>[DUPLICATE_RECORD, FORMAT_ERROR, FUNCTION_NOT_SUPPORTED, GENERAL_ERROR, INVALID_AMOUNT, ROUTING_ERROR, TRANSACTION_NOT_SUPPORTED, UNABLE_TO_LOCATE_RECORD, UPSTREAM_UNAVAILABLE, VOUCHER_ALREADY_REDEEMED, VOUCHER_ALREADY_PROVISIONED, VOUCHER_ALREADY_CONFIRMED, VOUCHER_ALREADY_REVERSED, VOUCHER_ALREADY_REFUNDED, VOUCHER_NOT_REFUNDED, VOUCHER_NOT_REDEEMABLE, VOUCHER_NOT_REDEEMED, VOUCHER_STATUS_UNKNOWN, REDEMPTION_ALREADY_CONFIRMED, REDEMPTION_NOT_CONFIRMED, REDEMPTION_ALREADY_REVERSED, REFUND_ALREADY_CONFIRMED, REFUND_ALREADY_REVERSED, INVALID_MERCHANT, INVALID_VOUCHER, AUTHENTICATION_ERROR, INSUFFICIENT_AMOUNT]</i></td>
+    <td><i>[DUPLICATE_RECORD, FORMAT_ERROR, FUNCTION_NOT_SUPPORTED, GENERAL_ERROR, INVALID_AMOUNT, ROUTING_ERROR, TRANSACTION_NOT_SUPPORTED, UNABLE_TO_LOCATE_RECORD, UPSTREAM_UNAVAILABLE, VOUCHER_ALREADY_REDEEMED, VOUCHER_ALREADY_PROVISIONED, VOUCHER_ALREADY_CONFIRMED, VOUCHER_ALREADY_REVERSED, VOUCHER_ALREADY_REFUNDED, VOUCHER_NOT_REFUNDED, VOUCHER_NOT_REDEEMABLE, VOUCHER_NOT_REDEEMED, VOUCHER_STATUS_UNKNOWN, REDEMPTION_ALREADY_CONFIRMED, REDEMPTION_NOT_CONFIRMED, REDEMPTION_ALREADY_REVERSED, REFUND_ALREADY_CONFIRMED, REFUND_ALREADY_REVERSED, INVALID_MERCHANT, INVALID_VOUCHER, AUTHENTICATION_ERROR, INSUFFICIENT_AMOUNT, DO_NOT_HONOUR]</i></td>
     <td>The type of error that occurred</td>
 </tr>
 <tr>
@@ -911,6 +911,14 @@
     <td></td>
     <td></td>
     <td>Merchant data. Required if available</td>
+</tr>
+<tr>
+    <td>operatorId</td>
+    <td>string</td>
+    <td>optional</td>
+    <td></td>
+    <td>maxLength:<i>30</i><br/></td>
+    <td>The ID that uniquely identifies the person operating the terminal specified by the terminalId field.</td>
 </tr></p>
 
 <p></table></p>
@@ -1617,7 +1625,7 @@
 
 <h2 id="refundrequest">RefundRequest</h2>
 
-<p>A description of a request to refund a voucher. This object supports requests for refunds for amounts different to the value for which the voucher was originally redeemed.
+<p>A description of a request to refund a voucher. This object supports requests for refunds for amounts different to the value for which the voucher was originally redeemed. Refunds are predicated on some prior redemption which may be referenced using a variety of mechanisms: the voucher used (if a voucher may only ever be used once), the redemption&#x27;s message ID (which links to a specific redemption if a voucher may be re-issued by a voucher vendor), or the receiver&#x27;s transaction reference for the redemption (most readily identifies the specific redemption to the receiver).
 <table border="1">
 <tr>
     <th>Name</th>
@@ -1745,7 +1753,7 @@
     <td>optional</td>
     <td></td>
     <td></td>
-    <td>Indicates the amount for which the voucher should be refunded.</td>
+    <td>Indicates the amount for which the voucher should be refunded in the requestAmount field. If requestAmount is not populated then a full refund is to be assumed.</td>
 </tr>
 <tr>
     <td>voucher</td>
@@ -1754,6 +1762,22 @@
     <td></td>
     <td></td>
     <td>The voucher to be refunded.</td>
+</tr>
+<tr>
+    <td>redemptionId</td>
+    <td>string</td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Carries the value of the <code>id</code> field of the RedemptionRequest which is being refunded. Use of this field is encouraged if the refund request is submitted to the same system which processed the original redemption.</td>
+</tr>
+<tr>
+    <td>receiverTransactionRef</td>
+    <td>string</td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Carries the value of the receiver&rsquo;s transaction reference for the original redemption. Use of this field is specifically encouraged if: The voucher alone is not enough to uniquely identify the redemption to be refunded or the refund is processed by any system which did not process the original redemption. Use of this field is generally encouraged as it provides the receiver (who ultimately processed the redemption) with their specific transaction reference for the redemption. This may aid their processing of the refund.</td>
 </tr></p>
 
 <p></table></p>

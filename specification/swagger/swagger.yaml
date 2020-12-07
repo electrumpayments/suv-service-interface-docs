@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an\n                  interface\
     \ for\n                  single use voucher transactions."
-  version: "1.12.0"
+  version: "1.13.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -224,12 +224,12 @@ paths:
   /refunds:
     post:
       summary: "Refunds a voucher."
-      description: "This operation is performed when a voucher was previously used\
-        \ as a form of tender. Should a consumer request a refund from the merchant,\
-        \ the merchant may use the refundVoucher operation to request the voucher\
-        \ be placed back into an unredeemed state. The voucher vendor is responsible\
-        \ for authorizing the refund. Once refunded, the voucher may be used as a\
-        \ form of tender again if allowed by the voucher vendor."
+      description: "This operation is performed when a voucher was previously successfully\
+        \ redeemed. Should a consumer request a refund from the merchant, the merchant\
+        \ may use the refundVoucher operation to request the voucher be placed back\
+        \ into an unredeemed state. The voucher vendor is responsible for authorizing\
+        \ the refund. Once refunded, the voucher may be used as a form of tender again\
+        \ if allowed by the voucher vendor."
       operationId: "refundVoucher"
       consumes:
       - "application/json"
@@ -595,9 +595,9 @@ paths:
 securityDefinitions:
   httpBasic:
     description: "All requests require HTTP basic\n                    authentication,\n\
-      \                    where user name equals the value used in\n            \
-      \        Client.Institution.id\n                    and password has been agreed\
-      \ with Electrum."
+      \                    where user name equals the value used\n               \
+      \     in\n                    Client.Institution.id\n                    and\
+      \ password has been agreed\n                    with Electrum."
     type: "basic"
 definitions:
   Amounts:
@@ -822,6 +822,7 @@ definitions:
         - "INVALID_VOUCHER"
         - "AUTHENTICATION_ERROR"
         - "INSUFFICIENT_AMOUNT"
+        - "DO_NOT_HONOUR"
       errorMessage:
         type: "string"
         description: "A short description of the error"
@@ -962,6 +963,12 @@ definitions:
       merchant:
         description: "Merchant data. Required if available"
         $ref: "#/definitions/Merchant"
+      operatorId:
+        type: "string"
+        description: "The ID that uniquely identifies the person operating the terminal\
+          \ specified by the terminalId field."
+        minLength: 0
+        maxLength: 30
     description: "The Originator object encapsulates data relating to the originator\
       \ of the transaction"
   Pin:
@@ -1641,14 +1648,36 @@ definitions:
         type: "string"
         description: "This is a reference set by the original source of the transaction."
       amounts:
-        description: "Indicates the amount for which the voucher should be refunded."
+        description: "Indicates the amount for which the voucher should be refunded\
+          \ in the requestAmount field. If requestAmount is not populated then a full\
+          \ refund is to be assumed."
         $ref: "#/definitions/Amounts"
       voucher:
         description: "The voucher to be refunded."
         $ref: "#/definitions/Voucher"
+      redemptionId:
+        type: "string"
+        description: "Carries the value of the `id` field of the RedemptionRequest\
+          \ which is being refunded. Use of this field is encouraged if the refund\
+          \ request is submitted to the same system which processed the original redemption."
+      receiverTransactionRef:
+        type: "string"
+        description: "Carries the value of the receiver's transaction reference for\
+          \ the original redemption. Use of this field is specifically encouraged\
+          \ if: The voucher alone is not enough to uniquely identify the redemption\
+          \ to be refunded or the refund is processed by any system which did not\
+          \ process the original redemption. Use of this field is generally encouraged\
+          \ as it provides the receiver (who ultimately processed the redemption)\
+          \ with their specific transaction reference for the redemption. This may\
+          \ aid their processing of the refund."
     description: "A description of a request to refund a voucher. This object supports\
       \ requests for refunds for amounts different to the value for which the voucher\
-      \ was originally redeemed."
+      \ was originally redeemed. Refunds are predicated on some prior redemption which\
+      \ may be referenced using a variety of mechanisms: the voucher used (if a voucher\
+      \ may only ever be used once), the redemption's message ID (which links to a\
+      \ specific redemption if a voucher may be re-issued by a voucher vendor), or\
+      \ the receiver's transaction reference for the redemption (most readily identifies\
+      \ the specific redemption to the receiver)."
   RefundResponse:
     type: "object"
     required:

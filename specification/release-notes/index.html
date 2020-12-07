@@ -353,6 +353,19 @@
 
 <p>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.</p>
 
+<h2 id="v1-13-0">v1.13.0</h2>
+
+<p>Released 07 December 2020</p>
+
+<ul>
+<li>Updated the <code>RefundRequest</code> model to support refunds of non-unique vouchers by including redemption transaction references in the model.</li>
+<li>Updated base service interface version from v3.27.0 to v3.28.0:
+
+<ul>
+<li>Added <code>operatorId</code> field to the <code>Originator</code> model.</li>
+</ul></li>
+</ul>
+
 <h2 id="v1-12-0">v1.12.0</h2>
 
 <p>Released 19 August 2020</p>
@@ -361,8 +374,7 @@
 <li>Updated <code>ErrorDetail.ErrorType</code> to include the following new value:
 
 <ul>
-<li><code>VOUCHER_STATUS_UNKNOWN</code> - This <code>errorType</code> is shown when upstream has indicated that they cannot resolve the exact status of a requested voucher.
-<br /></li>
+<li><code>VOUCHER_STATUS_UNKNOWN</code> - This <code>errorType</code> is shown when upstream has indicated that they cannot resolve the exact status of a requested voucher.</li>
 </ul></li>
 </ul>
 
@@ -381,6 +393,15 @@
 <li>This was because the updated implementation assumed ownership of the JAX-RS properties.</li>
 <li>Thus, existing implementations of the API would unexpectedly use the newest implementation of the <code>lookupVoucher</code> operation which returns error responses.</li>
 <li>The Java implementation has been corrected to use the prior implementation of the <code>lookupVoucher</code> operation as the default behaviour of the newer implementations.</li>
+</ul></li>
+<li>Updated base service interface version from v3.24.0 to v3.27.0:
+
+<ul>
+<li>Added a <code>RewardPayment</code> <code>PaymentMethod</code>.</li>
+<li>Provided testing utilities to aid API development in the Java implementation provided by Electrum.</li>
+<li>Added <code>Account</code> <code>PaymentMethod</code>.</li>
+<li>Added <code>HasAmounts</code> and <code>HasPaymentMethods</code> interfaces. These can be used for creating shared utilities across API implementations.</li>
+<li>Added <code>amounts</code> field to the <code>BasicAdvice</code> model to support partial reversals and partial confirmations.</li>
 </ul></li>
 </ul>
 
