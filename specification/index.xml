@@ -26,7 +26,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/introduction/</guid>
-      <description> Version 1.13.0
+      <description> Version 1.14.0
 The Electrum SUV Service describes an interface for single use voucher transactions.
 Email Electrum Support
 Licensed under Apache 2.0
@@ -53,9 +53,9 @@ Parameters  Name Located in Required Description Default Schema</description>
       
       <guid>https://electrumpayments.github.io/suv-service-interface-docs/specification/release-notes/</guid>
       <description>This page describes changes to the Single Use Voucher Service Interface implemented across different releases of the interface.
-v1.13.0 Released 07 December 2020
- Updated the RefundRequest model to support refunds of non-unique vouchers by including redemption transaction references in the model. Updated base service interface version from v3.27.0 to v3.28.0:  Added operatorId field to the Originator model.   v1.12.0 Released 19 August 2020
- Updated ErrorDetail.ErrorType to include the following new value:  VOUCHER_STATUS_UNKNOWN - This errorType is shown when upstream has indicated that they cannot resolve the exact status of a requested voucher.</description>
+v1.14.0 Released 22 April 2021
+ Updated the following models to include a posInfo field of type PosInfo which describes the circumstances of the terminal or device where the transaction was initiated:  ProvisionRequest ProvisionResponse RedemptionRequest RedemptionResponse RefundRequest RefundResponse   v1.13.0 Released 07 December 2020
+ Updated the RefundRequest model to support refunds of non-unique vouchers by including redemption transaction references in the model.</description>
     </item>
     
     <item>

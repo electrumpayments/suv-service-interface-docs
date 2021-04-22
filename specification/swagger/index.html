@@ -364,7 +364,7 @@ info:
                   interface\
     \ for
                   single use voucher transactions.&quot;
-  version: &quot;1.13.0&quot;
+  version: &quot;1.14.0&quot;
   title: &quot;SUV Service Interface&quot;
   contact:
     name: &quot;Electrum Support&quot;
@@ -1120,11 +1120,11 @@ definitions:
         type: &quot;string&quot;
         description: &quot;PIN block format that was used when encrypting the PIN. Defaults\
           \ to ISO_9564_FORMAT_0.&quot;
+        default: &quot;ISO_9564_FORMAT_0&quot;
         enum:
         - &quot;ISO_9564_FORMAT_0&quot;
         - &quot;ISO_9564_FORMAT_1&quot;
         - &quot;ISO_9564_FORMAT_3&quot;
-        default: &quot;ISO_9564_FORMAT_0&quot;
       accountNumber:
         type: &quot;string&quot;
         description: &quot;12 digit account number used when encrypting the PIN. When account\
@@ -1403,6 +1403,57 @@ definitions:
           $ref: &quot;#/definitions/HashedPinParameters&quot;
       description: &quot;A PIN, required to authorise a transaction, which has been hashed\
         \ according to some hashing algorithm.&quot;
+  PosEntryMode:
+    type: &quot;object&quot;
+    required:
+    - &quot;panEntryMode&quot;
+    - &quot;pinEntryCapability&quot;
+    properties:
+      panEntryMode:
+        type: &quot;string&quot;
+        description: &quot;Describes the method by which the PAN was captured.&quot;
+        enum:
+        - &quot;UNKNOWN&quot;
+        - &quot;MANUAL&quot;
+        - &quot;MAGSTRIPE_NO_CVV&quot;
+        - &quot;BARCODE&quot;
+        - &quot;OCR&quot;
+        - &quot;ICC_CVV&quot;
+        - &quot;CONTACTLESS_ICC&quot;
+        - &quot;MAGSTRIPE_CVV&quot;
+        - &quot;CONTACTLESS_MAGSTRIPE&quot;
+        - &quot;ICC_NO_CVV&quot;
+        - &quot;ORIG_MODE&quot;
+        - &quot;FALLBACK&quot;
+      pinEntryCapability:
+        type: &quot;string&quot;
+        description: &quot;Describes whether the PIN can be entered.&quot;
+        enum:
+        - &quot;UNKNOWN&quot;
+        - &quot;CAN_ACCEPT&quot;
+        - &quot;CANNOT_ACCEPT&quot;
+    description: &quot;Describes how the PAN and PIN were captured by the POS.&quot;
+  PosInfo:
+    type: &quot;object&quot;
+    properties:
+      entryMode:
+        description: &quot;Describes the manner in which the POS captured card and PIN\
+          \ data.&quot;
+        $ref: &quot;#/definitions/PosEntryMode&quot;
+      posConditionCode:
+        type: &quot;string&quot;
+        description: &quot;Describes the circumstances of the transaciton at the POS.&quot;
+        enum:
+        - &quot;NORMAL_PRESENTMENT&quot;
+        - &quot;CUSTOMER_NOT_PRESENT&quot;
+        - &quot;CUSTOMER_PRESENT_AND_CARD_NOT_PRESENT&quot;
+        - &quot;CUSTOMER_IDENTITY_VERIFIED&quot;
+        - &quot;PUBLIC_UTILITY_TERMINAL&quot;
+        - &quot;CUSTOMER_TERMINAL&quot;
+        - &quot;MANUAL_REVERSAL&quot;
+        - &quot;UNATTENDED_TERMINAL_AND_CARD_CAN_BE_RETAINED&quot;
+        - &quot;UNATTENDED_TERMINAL_AND_CARD_CANNOT_BE_RETAINED&quot;
+    description: &quot;POS related data.&quot;
   Product:
     type: &quot;object&quot;
     required:
@@ -1548,6 +1599,10 @@ definitions:
       product:
         description: &quot;The product for which the voucher should be provisioned.&quot;
         $ref: &quot;#/definitions/Product&quot;
+      posInfo:
+        description: &quot;Information about the status of the POS/terminal used in the\
+          \ transaction.&quot;
+        $ref: &quot;#/definitions/PosInfo&quot;
     description: &quot;Information about the voucher provision request.&quot;
   ProvisionResponse:
     type: &quot;object&quot;
@@ -1670,6 +1725,10 @@ definitions:
           \ be the same as the product in the ProvisionRequest and is echoed back\
           \ for convenience.&quot;
         $ref: &quot;#/definitions/Product&quot;
+      posInfo:
+        description: &quot;Information about the status of the POS/terminal used in the\
+          \ transaction.&quot;
+        $ref: &quot;#/definitions/PosInfo&quot;
     description: &quot;Information about the voucher provisioned.&quot;
   RedemptionRequest:
     type: &quot;object&quot;
@@ -1786,6 +1845,10 @@ definitions:
       amounts:
         description: &quot;Indicates the amount for which the voucher is to be redeemed.&quot;
         $ref: &quot;#/definitions/Amounts&quot;
+      posInfo:
+        description: &quot;Information about the status of the POS/terminal used in the\
+          \ transaction.&quot;
+        $ref: &quot;#/definitions/PosInfo&quot;
     description: &quot;A description of a request to redeem a voucher. This object supports\
       \ requests for redemptions against amounts different to the value for which\
       \ the voucher was provisioned.&quot;
@@ -1904,6 +1967,10 @@ definitions:
         description: &quot;Amounts which make up the transaction. Absent amounts have zero\
           \ value.&quot;
         $ref: &quot;#/definitions/Amounts&quot;
+      posInfo:
+        description: &quot;Information about the status of the POS/terminal used in the\
+          \ transaction.&quot;
+        $ref: &quot;#/definitions/PosInfo&quot;
     description: &quot;Information about the voucher redemption outcome.&quot;
   RefundRequest:
     type: &quot;object&quot;
@@ -2037,6 +2104,10 @@ definitions:
           \ as it provides the receiver (who ultimately processed the redemption)\
           \ with their specific transaction reference for the redemption. This may\
           \ aid their processing of the refund.&quot;
+      posInfo:
+        description: &quot;Information about the status of the POS/terminal used in the\
+          \ transaction.&quot;
+        $ref: &quot;#/definitions/PosInfo&quot;
     description: &quot;A description of a request to refund a voucher. This object supports\
       \ requests for refunds for amounts different to the value for which the voucher\
       \ was originally redeemed. Refunds are predicated on some prior redemption which\
@@ -2159,6 +2230,10 @@ definitions:
       voucher:
         description: &quot;The voucher that was refunded.&quot;
         $ref: &quot;#/definitions/Voucher&quot;
+      posInfo:
+        description: &quot;Information about the status of the POS/terminal used in the\
+          \ transaction.&quot;
+        $ref: &quot;#/definitions/PosInfo&quot;
     description: &quot;Information about the voucher redemption outcome.&quot;
   SlipData:
     type: &quot;object&quot;
@@ -2372,6 +2447,8 @@ definitions:
     required:
     - &quot;voucher&quot;
     properties:
+      posInfo:
+        $ref: &quot;#/definitions/PosInfo&quot;
       settlementEntity:
         description: &quot;Information about who the request was routed to for processing.&quot;
         $ref: &quot;#/definitions/Institution&quot;
@@ -2396,7 +2473,7 @@ definitions:
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2020 Released under the Apache 2.0 license &ndash;
+				&copy; 2021 Released under the Apache 2.0 license &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>

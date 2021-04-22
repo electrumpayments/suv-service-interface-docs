@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "The Electrum SUV Service describes an\n                  interface\
     \ for\n                  single use voucher transactions."
-  version: "1.13.0"
+  version: "1.14.0"
   title: "SUV Service Interface"
   contact:
     name: "Electrum Support"
@@ -753,11 +753,11 @@ definitions:
         type: "string"
         description: "PIN block format that was used when encrypting the PIN. Defaults\
           \ to ISO_9564_FORMAT_0."
+        default: "ISO_9564_FORMAT_0"
         enum:
         - "ISO_9564_FORMAT_0"
         - "ISO_9564_FORMAT_1"
         - "ISO_9564_FORMAT_3"
-        default: "ISO_9564_FORMAT_0"
       accountNumber:
         type: "string"
         description: "12 digit account number used when encrypting the PIN. When account\
@@ -1036,6 +1036,57 @@ definitions:
           $ref: "#/definitions/HashedPinParameters"
       description: "A PIN, required to authorise a transaction, which has been hashed\
         \ according to some hashing algorithm."
+  PosEntryMode:
+    type: "object"
+    required:
+    - "panEntryMode"
+    - "pinEntryCapability"
+    properties:
+      panEntryMode:
+        type: "string"
+        description: "Describes the method by which the PAN was captured."
+        enum:
+        - "UNKNOWN"
+        - "MANUAL"
+        - "MAGSTRIPE_NO_CVV"
+        - "BARCODE"
+        - "OCR"
+        - "ICC_CVV"
+        - "CONTACTLESS_ICC"
+        - "MAGSTRIPE_CVV"
+        - "CONTACTLESS_MAGSTRIPE"
+        - "ICC_NO_CVV"
+        - "ORIG_MODE"
+        - "FALLBACK"
+      pinEntryCapability:
+        type: "string"
+        description: "Describes whether the PIN can be entered."
+        enum:
+        - "UNKNOWN"
+        - "CAN_ACCEPT"
+        - "CANNOT_ACCEPT"
+    description: "Describes how the PAN and PIN were captured by the POS."
+  PosInfo:
+    type: "object"
+    properties:
+      entryMode:
+        description: "Describes the manner in which the POS captured card and PIN\
+          \ data."
+        $ref: "#/definitions/PosEntryMode"
+      posConditionCode:
+        type: "string"
+        description: "Describes the circumstances of the transaciton at the POS."
+        enum:
+        - "NORMAL_PRESENTMENT"
+        - "CUSTOMER_NOT_PRESENT"
+        - "CUSTOMER_PRESENT_AND_CARD_NOT_PRESENT"
+        - "CUSTOMER_IDENTITY_VERIFIED"
+        - "PUBLIC_UTILITY_TERMINAL"
+        - "CUSTOMER_TERMINAL"
+        - "MANUAL_REVERSAL"
+        - "UNATTENDED_TERMINAL_AND_CARD_CAN_BE_RETAINED"
+        - "UNATTENDED_TERMINAL_AND_CARD_CANNOT_BE_RETAINED"
+    description: "POS related data."
   Product:
     type: "object"
     required:
@@ -1181,6 +1232,10 @@ definitions:
       product:
         description: "The product for which the voucher should be provisioned."
         $ref: "#/definitions/Product"
+      posInfo:
+        description: "Information about the status of the POS/terminal used in the\
+          \ transaction."
+        $ref: "#/definitions/PosInfo"
     description: "Information about the voucher provision request."
   ProvisionResponse:
     type: "object"
@@ -1303,6 +1358,10 @@ definitions:
           \ be the same as the product in the ProvisionRequest and is echoed back\
           \ for convenience."
         $ref: "#/definitions/Product"
+      posInfo:
+        description: "Information about the status of the POS/terminal used in the\
+          \ transaction."
+        $ref: "#/definitions/PosInfo"
     description: "Information about the voucher provisioned."
   RedemptionRequest:
     type: "object"
@@ -1419,6 +1478,10 @@ definitions:
       amounts:
         description: "Indicates the amount for which the voucher is to be redeemed."
         $ref: "#/definitions/Amounts"
+      posInfo:
+        description: "Information about the status of the POS/terminal used in the\
+          \ transaction."
+        $ref: "#/definitions/PosInfo"
     description: "A description of a request to redeem a voucher. This object supports\
       \ requests for redemptions against amounts different to the value for which\
       \ the voucher was provisioned."
@@ -1537,6 +1600,10 @@ definitions:
         description: "Amounts which make up the transaction. Absent amounts have zero\
           \ value."
         $ref: "#/definitions/Amounts"
+      posInfo:
+        description: "Information about the status of the POS/terminal used in the\
+          \ transaction."
+        $ref: "#/definitions/PosInfo"
     description: "Information about the voucher redemption outcome."
   RefundRequest:
     type: "object"
@@ -1670,6 +1737,10 @@ definitions:
           \ as it provides the receiver (who ultimately processed the redemption)\
           \ with their specific transaction reference for the redemption. This may\
           \ aid their processing of the refund."
+      posInfo:
+        description: "Information about the status of the POS/terminal used in the\
+          \ transaction."
+        $ref: "#/definitions/PosInfo"
     description: "A description of a request to refund a voucher. This object supports\
       \ requests for refunds for amounts different to the value for which the voucher\
       \ was originally redeemed. Refunds are predicated on some prior redemption which\
@@ -1792,6 +1863,10 @@ definitions:
       voucher:
         description: "The voucher that was refunded."
         $ref: "#/definitions/Voucher"
+      posInfo:
+        description: "Information about the status of the POS/terminal used in the\
+          \ transaction."
+        $ref: "#/definitions/PosInfo"
     description: "Information about the voucher redemption outcome."
   SlipData:
     type: "object"
@@ -2005,6 +2080,8 @@ definitions:
     required:
     - "voucher"
     properties:
+      posInfo:
+        $ref: "#/definitions/PosInfo"
       settlementEntity:
         description: "Information about who the request was routed to for processing."
         $ref: "#/definitions/Institution"

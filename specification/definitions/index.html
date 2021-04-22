@@ -988,6 +988,68 @@
 
 </table>
 
+<h2 id="posentrymode">PosEntryMode</h2>
+
+<p>Describes how the PAN and PIN were captured by the POS.
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Restrictions</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>panEntryMode</td>
+    <td>string</td>
+    <td>required</td>
+    <td></td>
+    <td><i>[UNKNOWN, MANUAL, MAGSTRIPE_NO_CVV, BARCODE, OCR, ICC_CVV, CONTACTLESS_ICC, MAGSTRIPE_CVV, CONTACTLESS_MAGSTRIPE, ICC_NO_CVV, ORIG_MODE, FALLBACK]</i></td>
+    <td>Describes the method by which the PAN was captured.</td>
+</tr>
+<tr>
+    <td>pinEntryCapability</td>
+    <td>string</td>
+    <td>required</td>
+    <td></td>
+    <td><i>[UNKNOWN, CAN_ACCEPT, CANNOT_ACCEPT]</i></td>
+    <td>Describes whether the PIN can be entered.</td>
+</tr></p>
+
+<p></table></p>
+
+<h2 id="posinfo">PosInfo</h2>
+
+<p>POS related data.
+<table border="1">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Default</th>
+    <th>Restrictions</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>entryMode</td>
+    <td><a href="#posentrymode">PosEntryMode</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Describes the manner in which the POS captured card and PIN data.</td>
+</tr>
+<tr>
+    <td>posConditionCode</td>
+    <td>string</td>
+    <td>optional</td>
+    <td></td>
+    <td><i>[NORMAL_PRESENTMENT, CUSTOMER_NOT_PRESENT, CUSTOMER_PRESENT_AND_CARD_NOT_PRESENT, CUSTOMER_IDENTITY_VERIFIED, PUBLIC_UTILITY_TERMINAL, CUSTOMER_TERMINAL, MANUAL_REVERSAL, UNATTENDED_TERMINAL_AND_CARD_CAN_BE_RETAINED, UNATTENDED_TERMINAL_AND_CARD_CANNOT_BE_RETAINED]</i></td>
+    <td>Describes the circumstances of the transaciton at the POS.</td>
+</tr></p>
+
+<p></table></p>
+
 <h2 id="product">Product</h2>
 
 <p>Product related data.
@@ -1182,6 +1244,14 @@
     <td></td>
     <td></td>
     <td>The product for which the voucher should be provisioned.</td>
+</tr>
+<tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about the status of the POS/terminal used in the transaction.</td>
 </tr></p>
 
 <p></table></p>
@@ -1333,6 +1403,14 @@
     <td></td>
     <td></td>
     <td>The product for which the voucher was provisioned. This should be the same as the product in the ProvisionRequest and is echoed back for convenience.</td>
+</tr>
+<tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about the status of the POS/terminal used in the transaction.</td>
 </tr></p>
 
 <p></table></p>
@@ -1476,6 +1554,14 @@
     <td></td>
     <td></td>
     <td>Indicates the amount for which the voucher is to be redeemed.</td>
+</tr>
+<tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about the status of the POS/terminal used in the transaction.</td>
 </tr></p>
 
 <p></table></p>
@@ -1619,6 +1705,14 @@
     <td></td>
     <td></td>
     <td>Amounts which make up the transaction. Absent amounts have zero value.</td>
+</tr>
+<tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about the status of the POS/terminal used in the transaction.</td>
 </tr></p>
 
 <p></table></p>
@@ -1778,6 +1872,14 @@
     <td></td>
     <td></td>
     <td>Carries the value of the receiver&rsquo;s transaction reference for the original redemption. Use of this field is specifically encouraged if: The voucher alone is not enough to uniquely identify the redemption to be refunded or the refund is processed by any system which did not process the original redemption. Use of this field is generally encouraged as it provides the receiver (who ultimately processed the redemption) with their specific transaction reference for the redemption. This may aid their processing of the refund.</td>
+</tr>
+<tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about the status of the POS/terminal used in the transaction.</td>
 </tr></p>
 
 <p></table></p>
@@ -1921,6 +2023,14 @@
     <td></td>
     <td></td>
     <td>The voucher that was refunded.</td>
+</tr>
+<tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td>Information about the status of the POS/terminal used in the transaction.</td>
 </tr></p>
 
 <p></table></p>
@@ -2260,6 +2370,14 @@
     <th>Description</th>
 </tr>
 <tr>
+    <td>posInfo</td>
+    <td><a href="#posinfo">PosInfo</a></td>
+    <td>optional</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
     <td>settlementEntity</td>
     <td><a href="#institution">Institution</a></td>
     <td>optional</td>
@@ -2305,7 +2423,7 @@
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2020 Released under the Apache 2.0 license &ndash;
+				&copy; 2021 Released under the Apache 2.0 license &ndash;
 				
 				Documentation built with
 				<a href="https://www.gohugo.io" target="_blank">Hugo</a>
